@@ -2,9 +2,24 @@
     box-sizing: border-box;
 }
 
-body {
+:root {
+    --rjb-background: rgb(243, 241, 219);
+    --rjb-color: rgb(9, 15, 104);
+}
+
+body,
+input,
+select,
+textarea,
+button {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.7em;
+    color: var(--rjb-color);
+    background-color: var(--rjb-background);
+}
+
+.dark-theme {
+    --rjb-background: rgb(9, 15, 104);
+    --rjb-color: rgb(243, 241, 219);
 }
 
 .no-bullet {
