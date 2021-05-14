@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Note App RJB</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
-<header>
-    <nav class="navbar">
-        <div class="container"></div>
-        <h1>Notepad RJB</h1>
+<body class="site">
+<header class="header">
+    <div>
+        <h1>Task APP RJB</h1>
+        <p>Damit du nie wieder etwas vergisst!</p>
+    </div>
+    <nav class="nav">
         <ul>
-            <li><a href="index.html">Startpage</a></li>
+            <li><a href="index.html">Tasks</a></li>
             <li><a class="current" href="about.html">About</a></li>
+            <li><button type="button" id="theme-button">Toggle Darktheme</button></li>
         </ul>
     </nav>
 </header>
-<main>
-    <h1>About this page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, nulla!</p>
+<main class="main">
+    <h2>Deine Todos</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad adipisci consectetur, consequatur
+        consequuntur deserunt doloribus dolorum earum eveniet excepturi expedita impedit iste modi nam nostrum odit
+        officia pariatur perspiciatis, quod ratione rem similique ullam vel vero vitae voluptate voluptates
+        voluptatum.
+        Mollitia sint sit velit. Excepturi in optio quisquam sed.</p>
 </main>
-<footer>
-    <p>&copy; Reto Bischofberger, CAS FEE 2021</p>
+<footer class="footer">
+    <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-        integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-<script src="scripts/index.js" type="module"></script>
+<script crossorigin="anonymous"
+        defer integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
+        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
+<script defer src="./scripts/index.js" type="module"></script>
+<script defer src="./scripts/main.js"></script>
 </body>
 </html>
