@@ -11,15 +11,21 @@
         <h1>Task APP RJB</h1>
         <p>Damit du nie wieder etwas vergisst!</p>
     </div>
-    <nav class="nav">
-        <ul>
-            <li><a href="index.html">Tasks</a></li>
-            <li><a class="current" href="about.html">About</a></li>
-            <li>
-                <button id="theme-button" type="button">Toggle Darktheme</button>
-            </li>
-        </ul>
-    </nav>
+      <nav class="nav">
+        <div><a href="index.html">Übersicht</a></div>
+        <div class="current">
+          <a href="new_task.html">Neuer Task</a>
+        </div>
+        <div>
+          <a href="about.html">About</a>
+        </div>
+        <div>
+          <select id="theme-button" onchange="changeTheme()">
+            <option value="">Normal</option>
+            <option value="dark-theme">Dark-Theme</option>
+          </select>
+        </div>
+      </nav>
 </header>
 <main class="main">
     <h2>Erstelle einen neuen Task</h2>
@@ -29,7 +35,7 @@
                 <label for="title">Titel *</label>
             </div>
             <div>
-                <input id="title" name="title" type="text" value=""></input
+                <input id="title" name="title" type="text" value=""></input>
             </div>
             <div>
                 <label for="desc">Beschreibung</label>
@@ -53,7 +59,7 @@
                        type="date"
                        value="2021-07-22">
             </div>
-            <div>
+            <div id="save">
                 <button type="submit">Speichern</button>
             </div>
             <div>

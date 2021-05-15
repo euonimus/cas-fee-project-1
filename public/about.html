@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Note App RJB</title>
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body class="site">
-<header class="header">
-    <div>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="site">
+    <header class="header">
+      <div>
         <h1>Task APP RJB</h1>
         <p>Damit du nie wieder etwas vergisst!</p>
-    </div>
-    <nav class="nav">
-        <ul>
-            <li><a href="index.html">Tasks</a></li>
-            <li><a class="current" href="about.html">About</a></li>
-            <li><button type="button" id="theme-button">Toggle Darktheme</button></li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-    <h2>Deine Todos</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad adipisci consectetur, consequatur
-        consequuntur deserunt doloribus dolorum earum eveniet excepturi expedita impedit iste modi nam nostrum odit
-        officia pariatur perspiciatis, quod ratione rem similique ullam vel vero vitae voluptate voluptates
-        voluptatum.
-        Mollitia sint sit velit. Excepturi in optio quisquam sed.</p>
-</main>
-<footer class="footer">
-    <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
-</footer>
-<script crossorigin="anonymous"
-        defer integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
-        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
-<script defer src="./scripts/index.js" type="module"></script>
-<script defer src="./scripts/main.js"></script>
-</body>
+      </div>
+      <nav class="nav">
+        <div><a href="index.html">Übersicht</a></div>
+        <div>
+          <a href="new_task.html">Neuer Task</a>
+        </div>
+        <div class="current">
+          <a href="about.html">About</a>
+        </div>
+        <div>
+          <select id="theme-button" onchange="changeTheme()">
+            <option value="">Normal</option>
+            <option value="dark-theme">Dark-Theme</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <h2>About</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
+        adipisci consectetur, consequatur consequuntur deserunt doloribus
+        dolorum earum eveniet excepturi expedita impedit iste modi nam nostrum
+        odit officia pariatur perspiciatis, quod ratione rem similique ullam vel
+        vero vitae voluptate voluptates voluptatum. Mollitia sint sit velit.
+        Excepturi in optio quisquam sed.
+      </p>
+    </main>
+    <footer class="footer">
+      <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
+    </footer>
+    <script
+      crossorigin="anonymous"
+      defer
+      integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
+      src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+    ></script>
+    <script defer src="./scripts/index.js" type="module"></script>
+    <script defer src="./scripts/main.js"></script>
+  </body>
 </html>

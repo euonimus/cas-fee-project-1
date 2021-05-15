@@ -1,164 +1,254 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Note App RJB</title>
-    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body class="site">
-<header class="header">
-    <div>
+    <link
+      crossorigin="anonymous"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="site">
+    <header class="header">
+      <div>
         <h1>Task APP RJB</h1>
         <p>Damit du nie wieder etwas vergisst!</p>
-    </div>
-    <nav class="nav">
-        <ul>
-            <li><a class="current" href="index.html">Tasks</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>
-                <button id="theme-button" type="button">Toggle Darktheme</button>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-    <h2>Deine Todos</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, similique?</p>
-    <button id="create_new" type="button">Neuer Task erstellen</button>
-    <a href="new_task.html">Neuer Task erstellen</a>
-    <div class="sort">
+      </div>
+      <nav class="nav">
+        <div class="current">
+          <a href="index.html">Übersicht</a>
+        </div>
+        <div>
+          <a href="new_task.html">Neuer Task</a>
+        </div>
+        <div>
+          <a href="about.html">About</a>
+        </div>
+        <div>
+          <select id="theme-button" onchange="changeTheme()">
+            <option value="">Normal</option>
+            <option value="dark-theme">Dark-Theme</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <h2>Deine Tasks</h2>
+      <p id="demo"></p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam,
+        similique?
+      </p>
+      <div class="sort">
         <label>Sortieren nach</label>
         <button id="by_finished" type="button">Nach Erledigung</button>
         <button id="by_created" type="button">Nach Erstellung</button>
         <button id="by_importance" type="button">Nach Dringlichkeit</button>
-    </div>
-    <div class="tasks">
+      </div>
+      <div class="tasks">
         <div class="show_task">
-            <div>Nächste Woche</div>
-            <div>CAS FEE Selbststudium 111</div>
-            <div>⚡⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input checked id="checkbox1" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox1">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Nächste Woche</div>
+          <div>CAS FEE Selbststudium 111</div>
+          <div>⚡⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              checked
+              id="checkbox1"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox1">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox2" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox2">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox2"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox2">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox3" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox3">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox3"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox3">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox4" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox4">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox4"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox4">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox5" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox5">erledigt [heute]</label></div>
-            <div class="task-desc"><textarea rows="4">Das ist ganz wichtig, nicht vergessen!</textarea></div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox5"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox5">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox6" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox6">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox6"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox6">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox7" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox7">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox7"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox7">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox8" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox8">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox8"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox8">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
         <div class="show_task">
-            <div>Diesen Mittwoch</div>
-            <div>Mama anrufen</div>
-            <div>⚡⚡⚡</div>
-            <div class="task-edit">
-                <button type="submit">Bearbeiten</button>
-            </div>
-            <div><input id="checkbox9" name="checkbox" type="checkbox"
-                        value=""/><label for="checkbox9">erledigt [heute]</label></div>
-            <div class="task-desc">
-                <textarea readonly rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-            </div>
+          <div>Diesen Mittwoch</div>
+          <div>Mama anrufen</div>
+          <div>⚡⚡⚡</div>
+          <div class="task-edit">
+            <button type="submit">Bearbeiten</button>
+          </div>
+          <div>
+            <input
+              id="checkbox9"
+              name="checkbox"
+              type="checkbox"
+              value=""
+            /><label for="checkbox9">erledigt [heute]</label>
+          </div>
+          <div class="task-desc">
+            <textarea readonly rows="4">
+Das ist ganz wichtig, nicht vergessen!</textarea
+            >
+          </div>
         </div>
-    </div>
-</main>
-<footer class="footer">
-    <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
-</footer>
-<script crossorigin="anonymous"
-        defer integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
-        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
-<script defer src="./scripts/index.js" type="module"></script>
-<script defer src="./scripts/main.js"></script>
-</body>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
+    </footer>
+    <script
+      crossorigin="anonymous"
+      defer
+      integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
+      src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+    ></script>
+    <script defer src="./scripts/index.js" type="module"></script>
+    <script defer src="./scripts/main.js"></script>
+  </body>
 </html>
