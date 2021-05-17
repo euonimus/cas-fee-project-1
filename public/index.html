@@ -18,35 +18,56 @@
         <p>Damit du nie wieder etwas vergisst!</p>
       </div>
       <nav class="nav">
-        <div class="current">
+        <div class="current nav-menu">
           <a href="index.html">Übersicht</a>
         </div>
-        <div>
+        <div class="nav-menu">
           <a href="new_task.html">Neuer Task</a>
         </div>
-        <div>
+        <div class="nav-menu">
           <a href="about.html">About</a>
         </div>
         <div>
-          <select id="theme-button" onchange="changeTheme()">
-            <option value="regular">Normal</option>
+          <select class="sel" id="theme-button" onchange="changeTheme()">
+            <option value="regular">White-Theme</option>
             <option value="dark-theme">Dark-Theme</option>
           </select>
         </div>
       </nav>
     </header>
     <main class="main">
-      <h2>Deine Tasks</h2>
+      <h2>Übersicht über deine Tasks</h2>
       <p id="demo"></p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam,
-        similique?
+        similique.!
       </p>
       <div class="sort">
         <label>Sortieren nach</label>
-        <button id="by_finished" type="button">Nach Erledigung</button>
-        <button id="by_created" type="button">Nach Erstellung</button>
-        <button id="by_importance" type="button">Nach Dringlichkeit</button>
+        <button
+          class="btn"
+          id="by_finished"
+          type="button"
+          onclick="sortList(id)"
+        >
+          Nach Erledigung
+        </button>
+        <button
+          id="by_created"
+          class="btn"
+          type="button"
+          onclick="sortList(id)"
+        >
+          Nach Erstellung
+        </button>
+        <button
+          id="by_importance"
+          class="btn"
+          type="button"
+          onclick="sortList(id)"
+        >
+          Nach Dringlichkeit
+        </button>
       </div>
       <div class="tasks">
         <div class="show_task">
@@ -54,7 +75,7 @@
           <div>CAS FEE Selbststudium 111</div>
           <div>⚡⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -63,6 +84,7 @@
               name="checkbox"
               type="checkbox"
               value=""
+              class="input_checkbox"
             /><label for="checkbox1">erledigt [heute]</label>
           </div>
           <div class="task-desc">
@@ -76,7 +98,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -97,7 +119,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -118,7 +140,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -139,7 +161,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -158,7 +180,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -179,7 +201,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -200,7 +222,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input
@@ -221,7 +243,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
           <div>Mama anrufen</div>
           <div>⚡⚡⚡</div>
           <div class="task-edit">
-            <button type="submit">Bearbeiten</button>
+            <button class="btn" type="submit">Bearbeiten</button>
           </div>
           <div>
             <input

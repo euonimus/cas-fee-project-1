@@ -18,16 +18,18 @@
         <p>Damit du nie wieder etwas vergisst!</p>
     </div>
       <nav class="nav">
-        <div><a href="index.html">Übersicht</a></div>
-        <div class="current">
+        <div class="nav-menu">
+          <a href="index.html">Übersicht</a>
+        </div>
+        <div class="current nav-menu">
           <a href="new_task.html">Neuer Task</a>
         </div>
-        <div>
+        <div class="nav-menu">
           <a href="about.html">About</a>
         </div>
         <div>
-          <select id="theme-button" onchange="changeTheme()">
-            <option value="">Normal</option>
+          <select class="sel" id="theme-button" onchange="changeTheme()">
+            <option value="regular">White-Theme</option>
             <option value="dark-theme">Dark-Theme</option>
           </select>
         </div>
@@ -47,14 +49,17 @@
                 <label for="desc">Beschreibung</label>
             </div>
             <div>
-                <textarea id="desc" readonly>Das ist ganz wichtig, nicht vergessen!</textarea>
+                <textarea id="desc" placeholder="möglichst genau beschreiben"></textarea>
             </div>
             <div>
                 <label>Wichtigkeit</label>
             </div>
             <div>
-                <div><input id="checkbox9" name="checkbox" type="checkbox"
-                            value=""/><label for="checkbox9">erledigt [heute]</label></div>
+                <span>⚡</span>
+                <span>⚡</span>
+                <span>⚡</span>
+                <span>⚡</span>
+                <span>⚡</span>
             </div>
             <div>
                 <label>Erledigen bis *</label>
@@ -65,11 +70,11 @@
                        type="date"
                        value="2021-07-22">
             </div>
-            <div id="save">
-                <button type="submit">Speichern</button>
+            <div class="save">
+                <button class="btn" type="submit">Speichern</button>
             </div>
             <div>
-                <button type="submit">Abbrechen</button>
+                <button class="btn" type="submit">Abbrechen</button>
             </div>
         </div>
     </div>

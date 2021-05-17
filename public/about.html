@@ -18,16 +18,18 @@
         <p>Damit du nie wieder etwas vergisst!</p>
       </div>
       <nav class="nav">
-        <div><a href="index.html">Übersicht</a></div>
-        <div>
+        <div class="nav-menu">
+          <a href="index.html">Übersicht</a>
+        </div>
+        <div class="nav-menu">
           <a href="new_task.html">Neuer Task</a>
         </div>
-        <div class="current">
+        <div class="current nav-menu">
           <a href="about.html">About</a>
         </div>
         <div>
-          <select id="theme-button" onchange="changeTheme()">
-            <option value="">Normal</option>
+          <select class="sel" id="theme-button" onchange="changeTheme()">
+            <option value="regular">White-Theme</option>
             <option value="dark-theme">Dark-Theme</option>
           </select>
         </div>
@@ -42,6 +44,10 @@
         odit officia pariatur perspiciatis, quod ratione rem similique ullam vel
         vero vitae voluptate voluptates voluptatum. Mollitia sint sit velit.
         Excepturi in optio quisquam sed.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+        doloribus.
       </p>
     </main>
     <footer class="footer">
