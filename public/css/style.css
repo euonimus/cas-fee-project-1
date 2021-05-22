@@ -33,14 +33,14 @@ p {
   padding: 0.25rem 0;
 }
 
-/* input-styles */
-input::placeholder {
-  color: grey;
-}
-
 a {
   text-decoration: none;
   color: var(--theme-color-invert);
+}
+
+/* input-styles */
+input::placeholder {
+  color: grey;
 }
 
 .btn {
@@ -66,6 +66,14 @@ a {
   margin: 10px;
 }
 
+/* .current importaner then .btn */
+.current {
+  font-weight: 600;
+  color: var(--theme-color);
+  background-color: darkorange;
+}
+
+/* themes */
 .dark-theme {
   --theme-background: black;
   --theme-background-invert: white;
@@ -110,7 +118,6 @@ a {
 /* navbar */
 .nav {
   display: flex;
-  heigth: 50px;
   padding: 20px;
   justify-content: center;
   align-items: center;
@@ -120,13 +127,6 @@ a {
   width: 150px;
   padding: 10px 0;
   border-radius: 5px;
-}
-
-.current,
-.current a {
-  font-weight: 600;
-  color: var(--theme-color);
-  background: darkorange;
 }
 
 /* nav-menu:hoover is same like btn:hoover > in generell settings */
@@ -157,7 +157,7 @@ a {
   width: 10%;
 }
 
-/* tasks show */
+/* show task */
 .show_task {
   display: grid;
   grid-template-columns: 20% 1fr 1fr 1fr;
@@ -180,11 +180,11 @@ a {
   grid-template-columns: 20% 1fr;
 }
 
-.new_task .save {
+.new_task > .save {
   grid-column: 1 / span 2;
 }
 
-/* Sort buttons */
+/* sort buttons */
 .sort {
   display: flex;
   justify-content: space-around;

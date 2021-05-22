@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link href="css/style.css" rel="stylesheet" />
+    <link href="css/popup.css" rel="stylesheet" />
   </head>
   <body class="site">
     <header class="header">
@@ -20,9 +21,6 @@
       <nav class="nav">
         <div class="current nav-menu">
           <a href="index.html">Übersicht</a>
-        </div>
-        <div class="nav-menu">
-          <a href="new_task.html">Neuer Task</a>
         </div>
         <div class="nav-menu">
           <a href="about.html">About</a>
@@ -37,17 +35,18 @@
     </header>
     <main class="main">
       <h2>Übersicht über deine Tasks</h2>
-      <p id="demo"></p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam,
         similique.!
       </p>
       <div class="sort">
+        <button class="btn" id="btnOpenPopup">
+          Neuer Task erstellen
+        </button>
         <label>Sortieren nach</label>
         <button
           class="btn"
           id="by_finished"
-          type="button"
           onclick="sortList(id)"
         >
           Nach Erledigung
@@ -55,7 +54,6 @@
         <button
           id="by_created"
           class="btn"
-          type="button"
           onclick="sortList(id)"
         >
           Nach Erstellung
@@ -63,7 +61,6 @@
         <button
           id="by_importance"
           class="btn"
-          type="button"
           onclick="sortList(id)"
         >
           Nach Dringlichkeit
@@ -114,152 +111,54 @@ Das ist ganz wichtig, nicht vergessen!</textarea
             >
           </div>
         </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox3"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox3">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea readonly rows="4">
-Das ist ganz wichtig, nicht vergessen!</textarea
-            >
-          </div>
-        </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox4"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox4">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea readonly rows="4">
-Das ist ganz wichtig, nicht vergessen!</textarea
-            >
-          </div>
-        </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox5"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox5">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea rows="4">Das ist ganz wichtig, nicht vergessen!</textarea>
-          </div>
-        </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox6"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox6">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea readonly rows="4">
-Das ist ganz wichtig, nicht vergessen!</textarea
-            >
-          </div>
-        </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox7"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox7">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea readonly rows="4">
-Das ist ganz wichtig, nicht vergessen!</textarea
-            >
-          </div>
-        </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox8"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox8">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea readonly rows="4">
-Das ist ganz wichtig, nicht vergessen!</textarea
-            >
-          </div>
-        </div>
-        <div class="show_task">
-          <div>Diesen Mittwoch</div>
-          <div>Mama anrufen</div>
-          <div>⚡⚡⚡</div>
-          <div class="task-edit">
-            <button class="btn" type="submit">Bearbeiten</button>
-          </div>
-          <div>
-            <input
-              id="checkbox9"
-              name="checkbox"
-              type="checkbox"
-              value=""
-            /><label for="checkbox9">erledigt [heute]</label>
-          </div>
-          <div class="task-desc">
-            <textarea readonly rows="4">
-Das ist ganz wichtig, nicht vergessen!</textarea
-            >
-          </div>
-        </div>
       </div>
+    <!-- popup -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <h2>Erstelle/ändere einen Task</h2>
+        <div class="tasks">
+            <div class="new_task">
+                <div>
+                    <label for="title">Titel *</label>
+                </div>
+                <div>
+                    <input id="title" name="title" type="text" value=""></input>
+                </div>
+                <div>
+                    <label for="desc">Beschreibung</label>
+                </div>
+                <div>
+                    <textarea id="desc" placeholder="möglichst genau beschreiben"></textarea>
+                </div>
+                <div>
+                    <label>Wichtigkeit</label>
+                </div>
+                <div>
+                    <span>⚡</span>
+                    <span>⚡</span>
+                    <span>⚡</span>
+                    <span>⚡</span>
+                    <span>⚡</span>
+                </div>
+                <div>
+                    <label>Erledigen bis *</label>
+                </div>
+                <div>
+                    <input max="2023-31-12" min="2021-01-01"
+                          name="duedate"
+                          type="date"
+                          value="2021-07-22">
+                </div>
+                <div class="save">
+                    <button class="btn" type="submit">Speichern</button>
+                </div>
+                <div>
+                    <button class="btn" id="btnCanclePopup">Abbrechen</button>
+                </div>
+            </div>
+        </div>
+      </div>      
+    </div>      
     </main>
     <footer class="footer">
       <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
@@ -270,7 +169,7 @@ Das ist ganz wichtig, nicht vergessen!</textarea
       integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
       src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     ></script>
-    <script defer src="./scripts/index.js" type="module"></script>
-    <script defer src="./scripts/main.js"></script>
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/task.js" defer></script>
   </body>
 </html>

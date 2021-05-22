@@ -1,4 +1,3 @@
-
 function changeTheme() {
   if (document.getElementById("theme-button").value === "dark-theme") {
     document.body.classList.toggle("dark-theme", true);
@@ -9,7 +8,7 @@ function changeTheme() {
 
 function sortList(id) {
   if (document.getElementById(id).classList.contains("current")) {
-    //if already set > unset
+    //if already set > do unset
     id = undefined;
   }  
 
