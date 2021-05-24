@@ -153,7 +153,7 @@ input::placeholder {
   border-radius: 5px;
 }
 
-.tasks input[id*="checkbox"] {
+.tasks input[type*="checkbox"] {
   width: 10%;
 }
 
@@ -185,10 +185,22 @@ input::placeholder {
 }
 
 /* sort buttons */
-.sort {
+.sort-flex {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 50px;
   margin: 5px;
+}
+
+.sort-flex .btn {
+  min-width: 15%;
+}
+
+/* .sort .current::after {
+  content: " ⇑";
+} */
+
+.sort-flex .current::after {
+  content: " ⇓";
 }
