@@ -1,4 +1,13 @@
 export default class View {
+  htmlTemplateNewTask = Handlebars.compile(
+            `<div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
+              <div>{{title}}</div>
+              <div>{{importance}}</div>
+              <div class="task_edit"><button id="{{id}}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
+              <div><label><input id="{{id}}" type="checkbox" {{checked}} data-list-btn-finish/>erledigt</label></div>
+            <div class="task-desc"><textarea readonly rows="4">{{descr}}</textarea>
+            </div>`);
+
   constructor(taskManager, viewPopup) {
     this.taskManager = taskManager;
     this.viewPopup = viewPopup;
@@ -17,28 +26,22 @@ export default class View {
     this.elementIdPopupDelete = document.getElementById("popupDelete");    
   }
 
-  HTMLfinished(task) {
-    return (task.finished)
-    ? `<label><input id="${task.id}" type="checkbox" checked data-list-btn-finish/>erledigt</label>`
-    : `<label><input id="${task.id}" type="checkbox" data-list-btn-finish/>noch nicht abgeschlossen</label>`;
-  }
-
   HTMLdueDate(dueDate) {
     let dueDiff = moment.duration(moment(dueDate).diff(moment().startOf('day'))).asDays();
     let stringDate = moment(dueDate).format("DD.MM.YYYY")
 
     if (dueDiff < -1) {
-      return "überfällig seit " + Math.abs(Math.round(dueDiff)) + " Tagen";
+      return {class: "dueDate-tolate", text: "überfällig seit " + Math.abs(Math.round(dueDiff)) + " Tagen"};
     } else if (dueDiff < 0) {
-      return "überfällig seit gestern";
+      return {class: "dueDate-tolate", text: "überfällig seit gestern"};
     } else if (dueDiff < 1) {
-      return "heute fällig";
+      return {class: "dueDate-short", text: "heute fällig"};
     } else if (dueDiff < 2) {
-      return "morgen fällig";
+      return {class: "dueDate-short", text: "morgen fällig"};
     } else if (dueDiff < 5) {
-      return "demnächst fällig am " + stringDate;
+      return {class: "dueDate-easy", text: "demnächst fällig am " + stringDate};
     } else {
-      return "erst fällig am " + stringDate;
+      return {class: "dueDate-easy", text: "erst fällig am " + stringDate};
     }
   }
 
@@ -53,15 +56,14 @@ export default class View {
       taskArray.forEach((task) => {
         const newTask = document.createElement("div");
         newTask.classList.add("show_task");
-        newTask.innerHTML = 
-            `<div>${this.HTMLdueDate(task.dueDate)}</div>
-              <div>${task.title}</div>
-              <div>${task.importance}</div>
-              <div class="task_edit"><button id="${task.id}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
-              <div>${this.HTMLfinished(task)}
-            </div>
-            <div class="task-desc"><textarea readonly rows="4">${task.descr}</textarea>
-            </div>`;
+        newTask.innerHTML = this.htmlTemplateNewTask({
+          duedate:    this.HTMLdueDate(task.dueDate),
+          title:      task.title,
+          importance: task.importance,
+          id:         task.id,
+          checked:    (task.finished) ? "checked" : "",
+          descr:      task.descr
+        });
         this.registerTaskEventHandlers(newTask, task.id);
         this.elementTaskList.appendChild(newTask);
       })

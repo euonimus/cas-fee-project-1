@@ -204,3 +204,17 @@ input::placeholder {
 .sort-flex .current::after {
   content: " ⇓";
 }
+
+/* dueDate styles */
+.dueDate-tolate {
+  color: red;
+  font-weight: bold;
+}
+.dueDate-short {
+  color: orange;
+  font-weight: bold;
+}
+.dueDate-easy {
+  color: green;
+  font-weight: bold;
+}
