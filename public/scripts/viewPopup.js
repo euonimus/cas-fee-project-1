@@ -3,19 +3,20 @@ import Task from "./task.js";
 export default class ViewPopup {
   constructor(taskManager) {
     this.taskManager = taskManager;
-    this.taskListElement = document.querySelector("#task_list");
-    this.popup = document.querySelector('[data-task-form]');
     this.task = new Task();
-    this.elementH2 = document.querySelector('[data-task-form-h2]');
-    this.elementTitle = document.querySelector('[data-task-form-title]');
-    this.elementDescr = document.querySelector('[data-task-form-descr]');
-    this.elementDueDate = document.querySelector('[data-task-form-duedate]');
-    this.elementFinished = document.querySelector('[data-task-form-finished]');
+    this.taskListElement = document.querySelector("#task_list");
+    this.popup = document.querySelector('[data-task-popup]');    
+    this.elementH2         = document.querySelector('[data-task-popup-h2]');
+    this.elementTitle      = document.querySelector('[data-task-popup-title]');
+    this.elementDescr      = document.querySelector('[data-task-popup-descr]');
+    this.elementDueDate    = document.querySelector('[data-task-popup-duedate]');
+    this.elementFinished   = document.querySelector('[data-task-popup-finished]');
+    this.elementCreateDate = document.querySelector('[data-task-popup-createdate]');    
   }
   
   showPopup(display, id = 0) {
     if (display) {
-      this.popup.style.display = "block";
+      this.popup.classList.add("popup-visible");
       if (id > 0) {
         this.elementH2.innerHTML = "Bearbeite diesen Task";
         this.task = this.taskManager.getTask(id)
@@ -27,8 +28,9 @@ export default class ViewPopup {
       this.elementDescr.value   = this.task.descr;
       this.elementDueDate.value = moment(this.task.dueDate).format("YYYY-MM-DD");
       this.elementFinished.checked = this.task.finished;
+      this.elementCreateDate.innerHTML = moment(this.task.createDate).format("DD.MM.YYYY");
     } else {
-      this.popup.style.display = "none";
+      this.popup.classList.remove("popup-visible");
     }
   }
 

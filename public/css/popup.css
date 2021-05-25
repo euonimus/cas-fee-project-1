@@ -26,3 +26,7 @@
   border: solid 2px var(--theme-background-invert);
   border-radius: 5px;
 }
+
+.popup-visible {
+  display: block;
+}

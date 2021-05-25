@@ -17,12 +17,12 @@ view.elementIdThemeButton.addEventListener('change', () =>
   document.body.classList.toggle("dark-theme").value = (view.elementIdThemeButton.value === "dark-theme") ? true : false);
 
 //popup clicks
-view.elementIdPopupOpen.addEventListener('click', () => viewPopup.showPopup(true));
-view.elementIdPopupCancle.addEventListener('click', () => viewPopup.showPopup(false));
+view.elementBtnNew.addEventListener('click', () => viewPopup.showPopup(true));
+view.elementPopupBtnCancle.addEventListener('click', () => viewPopup.showPopup(false));
 
 view.updateView();
 
-view.elementIdPopupSave.addEventListener('click', () => {
+view.elementPopupBtnSave.addEventListener('click', () => {
   viewPopup.showPopup(false);
   viewPopup.mapData();
   taskManager.editTask(viewPopup.task);
@@ -30,7 +30,7 @@ view.elementIdPopupSave.addEventListener('click', () => {
   view.updateView();
 });
 
-view.elementIdPopupDelete.addEventListener('click', () => {
+view.elementPopupBtnDelete.addEventListener('click', () => {
   viewPopup.showPopup(false);
   taskManager.deleteTask(viewPopup.task);
 

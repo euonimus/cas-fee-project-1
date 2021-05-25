@@ -47,7 +47,7 @@
         similique.!
       </p>
       <div class="sort-flex">
-        <button class="btn sort" id="popupOpen">Neuer Task erstellen</button>
+        <button class="btn sort" data-list-btn-new>Neuer Task erstellen</button>
         <label>Sortieren nach</label>
         <button id="by_finished" class="btn sort">Nur erledigte</button>
         <button id="by_dueDate" class="btn sort">Nach Fälligkeit</button>
@@ -59,62 +59,48 @@
       <div class="tasks" id="task_list"></div>
 
       <!-- popup -->
-      <div class="popup" data-task-form>
+      <div class="popup" data-task-popup>
         <div class="popup-content">
-          <h2 data-task-form-h2></h2>
+          <h2 data-task-popup-h2></h2>
           <div class="tasks">
             <div class="new_task">
-              <div>
-                <label for="title">Titel *</label>
-              </div>
+              <div><label for="title">Titel *</label></div>
               <div>
                 <input
                   id="title"
                   name="title"
                   type="text"
-                  data-task-form-title
+                  data-task-popup-title
                 />
               </div>
-              <div>
-                <label for="desc">Beschreibung</label>
-              </div>
+              <div><label for="desc">Beschreibung</label></div>
               <div>
                 <textarea
                   id="desc"
                   placeholder="möglichst genau beschreiben"
-                  data-task-form-descr
+                  data-task-popup-descr
                 ></textarea>
               </div>
-              <div>
-                <label>Wichtigkeit</label>
-              </div>
-              <div>
-                <p data-task-form-importance></p>
-              </div>
-              <div>
-                <label>Erledigen bis *</label>
-              </div>
+              <div><label>Wichtigkeit</label></div>
+              <div><p data-task-popup-importance></p></div>
+              <div><label>Erledigen bis *</label></div>
               <div>
                 <input
                   max="2023-12-31"
                   min="2021-01-01"
                   name="duedate"
                   type="date"
-                  data-task-form-duedate
+                  data-task-popup-duedate
                 />
               </div>
-              <div>
-                <label>Erledigt</label>
-              </div>
-              <div><input type="checkbox" data-task-form-finished /></div>
-              <div>
-                <button class="btn" id="popupSave">Speichern</button>
-              </div>
-              <div>
-                <button class="btn" id="popupDelete">Löschen</button>
-              </div>
-              <div>
-                <button class="btn" id="popupCancle">Abbrechen</button>
+              <div><label>Erledigt</label></div>
+              <div><input type="checkbox" data-task-popup-finished /></div>
+              <div><label>Angelegt am</label></div>
+              <div><label data-task-popup-createdate></label></div>
+              <div class="btn-flex">
+                <button class="btn" data-popup-btn-save>Speichern</button>
+                <button class="btn" data-popup-btn-delete>Löschen</button>
+                <button class="btn" data-popup-btn-cancle>Abbrechen</button>
               </div>
             </div>
           </div>

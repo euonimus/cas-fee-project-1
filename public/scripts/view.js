@@ -20,11 +20,12 @@ export default class View {
     this.elementIdDueDate     = document.getElementById("by_dueDate");    
     this.elementIdImportance  = document.getElementById("by_importance");
     this.elementIdThemeButton = document.getElementById("theme_button");
-    this.elementIdPopupOpen   = document.getElementById("popupOpen");
-    this.elementIdPopupEdit   = document.getElementById("popupEdit");
-    this.elementIdPopupCancle = document.getElementById("popupCancle");
-    this.elementIdPopupSave   = document.getElementById("popupSave");
-    this.elementIdPopupDelete = document.getElementById("popupDelete");    
+    
+    this.elementBtnNew         = document.querySelector("[data-list-btn-new]");
+    this.elementBtnEdit        = document.querySelector("[data-list-btn-edit]");
+    this.elementPopupBtnSave   = document.querySelector("[data-popup-btn-save]");
+    this.elementPopupBtnCancle = document.querySelector("[data-popup-btn-cancle]");    
+    this.elementPopupBtnDelete = document.querySelector("[data-popup-btn-delete]");    
   }
 
   HTMLdueDate(dueDate) {
