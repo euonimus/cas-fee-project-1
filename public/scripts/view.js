@@ -11,9 +11,10 @@ export default class View {
   constructor(taskManager, viewPopup) {
     this.taskManager = taskManager;
     this.viewPopup = viewPopup;
-    this.elementTaskList = document.querySelector("#task_list");
+    this.lastSortElementId = undefined;
 
     //cons ElemendIds
+    this.elementIdTaskList    = document.querySelector("#task_list");
     this.elementIdFinished    = document.getElementById("by_finished");
     this.elementIdCreateDate  = document.getElementById("by_createDate");
     this.elementIdDueDate     = document.getElementById("by_dueDate");    
@@ -45,13 +46,31 @@ export default class View {
     }
   }
 
-  showTasks(taskArray = this.taskManager.getAllTasks()) {
-    this.elementTaskList.innerHTML = "";
+  updateView(elementId = this.lastSortElementId) {
+    let taskArray = [];
+    switch(elementId) {
+      case this.elementIdFinished:
+        taskArray = this.taskManager.getTasksOnlyFinished();
+        break;
+      case this.elementIdCreateDate:
+        taskArray = this.taskManager.getTasksSortedByCreateDate();
+        break;
+      case this.elementIdDueDate:
+        taskArray = this.taskManager.getTasksSortedByDueDate();
+        break;
+      case this.elementIdImportance:
+        taskArray = this.taskManager.getTasksSortedByImportance();
+        break;
+      default:
+        taskArray = this.taskManager.getTasksAll();
+        break;
+    }
+
+    this.elementIdTaskList.innerHTML = "";
     if (taskArray.length === 0) {
         const newTask = document.createElement("div");
-        newTask.classList.add("show_task");
         newTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen verfügbar";
-        this.elementTaskList.appendChild(newTask);
+        this.elementIdTaskList.appendChild(newTask);
     } else {
       taskArray.forEach((task) => {
         const newTask = document.createElement("div");
@@ -65,7 +84,7 @@ export default class View {
           descr:      task.descr
         });
         this.registerTaskEventHandlers(newTask, task.id);
-        this.elementTaskList.appendChild(newTask);
+        this.elementIdTaskList.appendChild(newTask);
       })
     }
   }
@@ -75,31 +94,16 @@ export default class View {
       //if already set > do unset
       elementId = undefined;
     }  
-
+    this.lastSortElementId = elementId;
     this.elementIdFinished.classList.toggle("current", false);
     this.elementIdCreateDate.classList.toggle("current", false);
     this.elementIdDueDate.classList.toggle("current", false);        
     this.elementIdImportance.classList.toggle("current", false);
-    
-    switch(elementId) {
-      case this.elementIdFinished:
-        this.showTasks(this.taskManager.getOnlyFinished());
-        break;
-      case this.elementIdCreateDate:
-        this.showTasks(this.taskManager.getSortedByCreateDate());
-        break;
-      case this.elementIdDueDate:
-        this.showTasks(this.taskManager.getSortedByDueDate());
-        break;
-      case this.elementIdImportance:
-        this.showTasks(this.taskManager.getSortedByImportance())
-        break;
-      default:
-        this.showTasks();
-        return;
-    }
 
-    elementId.classList.toggle("current", true);
+    if (elementId != undefined) {
+      elementId.classList.toggle("current", true);    
+    }
+    this.updateView(elementId);
   }
 
   registerTaskEventHandlers(newTask, taskId) {
@@ -108,7 +112,7 @@ export default class View {
 
     newTask.querySelector('[data-list-btn-finish]').addEventListener('click', () => {
       this.taskManager.changeFinished(taskId);
-      this.showTasks();
+      this.updateView();
     });  
   }
 }

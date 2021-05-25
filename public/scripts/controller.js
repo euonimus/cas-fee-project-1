@@ -13,25 +13,26 @@ view.elementIdDueDate.addEventListener('click', () => view.sortTasks(view.elemen
 view.elementIdImportance.addEventListener('click', () => view.sortTasks(view.elementIdImportance));
 
 //theme click
-view.elementIdThemeButton.addEventListener('change', () => document.body.classList.toggle("dark-theme").value = (view.elementIdThemeButton.value === "dark-theme") ? true : false);
+view.elementIdThemeButton.addEventListener('change', () =>
+  document.body.classList.toggle("dark-theme").value = (view.elementIdThemeButton.value === "dark-theme") ? true : false);
 
 //popup clicks
 view.elementIdPopupOpen.addEventListener('click', () => viewPopup.showPopup(true));
 view.elementIdPopupCancle.addEventListener('click', () => viewPopup.showPopup(false));
 
-view.showTasks();
+view.updateView();
 
 view.elementIdPopupSave.addEventListener('click', () => {
   viewPopup.showPopup(false);
   viewPopup.mapData();
   taskManager.editTask(viewPopup.task);
 
-  view.showTasks();
+  view.updateView();
 });
 
 view.elementIdPopupDelete.addEventListener('click', () => {
   viewPopup.showPopup(false);
   taskManager.deleteTask(viewPopup.task);
-  
-  view.showTasks();
+
+  view.updateView();
 });

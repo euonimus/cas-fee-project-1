@@ -25,7 +25,7 @@ export default class ViewPopup {
       }
       this.elementTitle.value   = this.task.title;
       this.elementDescr.value   = this.task.descr;
-      this.elementDueDate.value = this.task.dueDate.toISOString().substring(0, 10);
+      this.elementDueDate.value = this.task.dueDate.toISOString().substring(0, 10); //TODO moment einsetzen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       this.elementFinished.checked = this.task.finished;
     } else {
       this.popup.style.display = "none";
