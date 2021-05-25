@@ -24,8 +24,8 @@ export default class View {
     this.elementBtnNew         = document.querySelector("[data-list-btn-new]");
     this.elementBtnEdit        = document.querySelector("[data-list-btn-edit]");
     this.elementPopupBtnSave   = document.querySelector("[data-popup-btn-save]");
-    this.elementPopupBtnCancle = document.querySelector("[data-popup-btn-cancle]");    
-    this.elementPopupBtnDelete = document.querySelector("[data-popup-btn-delete]");    
+    this.elementPopupBtnCancle = document.querySelector("[data-popup-btn-cancle]"); 
+    this.elementPopupBtnDelete = document.querySelector("[data-popup-btn-delete]");
   }
 
   HTMLdueDate(dueDate) {
@@ -79,7 +79,7 @@ export default class View {
         newTask.innerHTML = this.htmlTemplateNewTask({
           duedate:    this.HTMLdueDate(task.dueDate),
           title:      task.title,
-          importance: task.importance,
+          importance: Array(task.importance).fill("⚡").join(""),
           id:         task.id,
           checked:    (task.finished) ? "checked" : "",
           descr:      task.descr

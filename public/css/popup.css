@@ -1,13 +1,4 @@
 .popup {
-  /* visibility: hidden;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; */
-
   display: none;
   position: fixed;
   padding-top: 100px;
@@ -29,4 +20,20 @@
 
 .popup-visible {
   display: block;
+}
+
+.importance {
+  cursor: pointer;
+}
+.importance span {
+  opacity: 0.5;
+}
+
+.importance:hover span,
+.importance .choice {
+  opacity: 1;
+}
+
+.importance span:hover ~ span {
+  opacity: 0.5;
 }

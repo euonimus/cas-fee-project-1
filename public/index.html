@@ -16,7 +16,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
     <link href="css/popup.css" rel="stylesheet" />
   </head>
   <body class="site">
@@ -59,30 +59,31 @@
       <div class="tasks" id="task_list"></div>
 
       <!-- popup -->
-      <div class="popup" data-task-popup>
+      <div class="popup" data-popup>
         <div class="popup-content">
-          <h2 data-task-popup-h2></h2>
+          <h2 data-popup-h2></h2>
           <div class="tasks">
             <div class="new_task">
               <div><label for="title">Titel *</label></div>
               <div>
-                <input
-                  id="title"
-                  name="title"
-                  type="text"
-                  data-task-popup-title
-                />
+                <input id="title" name="title" type="text" data-popup-title />
               </div>
               <div><label for="desc">Beschreibung</label></div>
               <div>
                 <textarea
                   id="desc"
                   placeholder="möglichst genau beschreiben"
-                  data-task-popup-descr
+                  data-popup-descr
                 ></textarea>
               </div>
               <div><label>Wichtigkeit</label></div>
-              <div><p data-task-popup-importance></p></div>
+              <div class="importance">
+                <span data-popup-importance1>⚡</span>
+                <span data-popup-importance2>⚡</span>
+                <span data-popup-importance3>⚡</span>
+                <span data-popup-importance4>⚡</span>
+                <span data-popup-importance5>⚡</span>
+              </div>
               <div><label>Erledigen bis *</label></div>
               <div>
                 <input
@@ -90,13 +91,13 @@
                   min="2021-01-01"
                   name="duedate"
                   type="date"
-                  data-task-popup-duedate
+                  data-popup-duedate
                 />
               </div>
               <div><label>Erledigt</label></div>
-              <div><input type="checkbox" data-task-popup-finished /></div>
+              <div><input type="checkbox" data-popup-finished /></div>
               <div><label>Angelegt am</label></div>
-              <div><label data-task-popup-createdate></label></div>
+              <div><label data-popup-createdate></label></div>
               <div class="btn-flex">
                 <button class="btn" data-popup-btn-save>Speichern</button>
                 <button class="btn" data-popup-btn-delete>Löschen</button>
