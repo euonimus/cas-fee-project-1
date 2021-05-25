@@ -47,7 +47,8 @@ export default class View {
     if (taskArray.length === 0) {
         const newTask = document.createElement("div");
         newTask.classList.add("show_task");
-        newTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen vorhanden";
+        newTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen verfügbar";
+        this.elementTaskList.appendChild(newTask);
     } else {
       taskArray.forEach((task) => {
         const newTask = document.createElement("div");
