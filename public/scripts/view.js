@@ -1,7 +1,8 @@
 export default class View {
-  constructor(taskManager) {
+  constructor(taskManager, viewPopup) {
     this.taskManager = taskManager;
-    this.taskListElement = document.querySelector("#task_list");
+    this.viewPopup = viewPopup;
+    this.elementTaskList = document.querySelector("#task_list");
 
     //cons ElemendIds
     this.elementIdFinished    = document.getElementById("by_finished");
@@ -14,21 +15,6 @@ export default class View {
     this.elementIdPopupCancle = document.getElementById("popupCancle");
     this.elementIdPopupSave   = document.getElementById("popupSave");
     this.elementIdPopupDelete = document.getElementById("popupDelete");    
-  }
-
-  getHTML(tasksArray) {
-      return (tasksArray.length === 0) ? `<div class="show_task"><p>Es sind keine Tasks zum Anzeigen vorhanden</p></div>`
-          : tasksArray.map(task => `<div class="show_task">
-              <div>${this.HTMLdueDate(task.dueDate)}</div>
-              <div>${task.title}</div>
-              <div>${task.importance}</div>
-              <div class="task_edit"><button id="${task.id}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
-              <div>${this.HTMLfinished(task)}
-            </div>
-            <div class="task-desc"><textarea readonly rows="4">${task.descr}</textarea>
-            </div>            
-          </div>`)
-          .join("");
   }
 
   HTMLfinished(task) {
@@ -56,8 +42,29 @@ export default class View {
     }
   }
 
-  showTasks(Array = this.taskManager.getAllTasks()) {
-    this.taskListElement.innerHTML = this.getHTML(Array);
+  showTasks(taskArray = this.taskManager.getAllTasks()) {
+    this.elementTaskList.innerHTML = "";
+    if (taskArray.length === 0) {
+        const newTask = document.createElement("div");
+        newTask.classList.add("show_task");
+        newTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen vorhanden";
+    } else {
+      taskArray.forEach((task) => {
+        const newTask = document.createElement("div");
+        newTask.classList.add("show_task");
+        newTask.innerHTML = 
+            `<div>${this.HTMLdueDate(task.dueDate)}</div>
+              <div>${task.title}</div>
+              <div>${task.importance}</div>
+              <div class="task_edit"><button id="${task.id}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
+              <div>${this.HTMLfinished(task)}
+            </div>
+            <div class="task-desc"><textarea readonly rows="4">${task.descr}</textarea>
+            </div>`;
+        this.registerTaskEventHandlers(newTask, task.id);
+        this.elementTaskList.appendChild(newTask);
+      })
+    }
   }
 
   sortTasks(elementId) {
@@ -90,5 +97,15 @@ export default class View {
     }
 
     elementId.classList.toggle("current", true);
+  }
+
+  registerTaskEventHandlers(newTask, taskId) {
+    //register event listener for task
+    newTask.querySelector('[data-list-btn-edit]').addEventListener('click', () => this.viewPopup.showPopup(true, taskId));
+
+    newTask.querySelector('[data-list-btn-finish]').addEventListener('click', () => {
+      this.taskManager.changeFinished(taskId);
+      this.showTasks();
+    });  
   }
 }
