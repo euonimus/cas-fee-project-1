@@ -38,12 +38,21 @@ export default class View {
   }
 
   HTMLdueDate(dueDate) {
-    //https://momentjs.com/docs/#/displaying/difference/
-    switch(moment(dueDate).diff(moment(), 'days')) { //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      case 0, 1: return "in den nächsten 24h";
-      case 2: return "übermorgen";
-      case 3, 4, 5, 6, 7: return "in den nächsten 7 Tagen fällig";
-      default: return "erst sehr spät fällig";
+    let dueDiff = moment.duration(moment(dueDate).diff(moment().startOf('day'))).asDays();
+    let stringDate = moment(dueDate).format("DD.MM.YYYY")
+
+    if (dueDiff < -1) {
+      return "überfällig seit " + Math.abs(Math.round(dueDiff)) + " Tagen";
+    } else if (dueDiff < 0) {
+      return "überfällig seit gestern";
+    } else if (dueDiff < 1) {
+      return "heute fällig";
+    } else if (dueDiff < 2) {
+      return "morgen fällig";
+    } else if (dueDiff < 5) {
+      return "demnächst fällig am " + stringDate;
+    } else {
+      return "erst fällig am " + stringDate;
     }
   }
 

@@ -6,8 +6,11 @@ export default class TaskManager {
 
     //add tasks
     this.editTask(new Task(1, 'Projektarbeit 1', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', new Date('2021-05-22'), new Date('2021-06-27'), 5, false));
-    this.editTask(new Task(2, 'Projektarbeit 1 beginnen', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-24'), 3, true));        
-    this.editTask(new Task(3, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', new Date(), new Date('2021-06-01'), 4, false));    
+    this.editTask(new Task(2, 'Projektarbeit 1 beginnen', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-23'), 3, true));   
+    this.editTask(new Task(3, 'Projektarbeit 1 beginnen', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-24'), 3, true));      
+    this.editTask(new Task(4, 'Projektarbeit 1 beginnen', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-25'), 3, true)); 
+    this.editTask(new Task(5, 'Projektarbeit 1 beginnen', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-26'), 3, true)); 
+    this.editTask(new Task(6, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', new Date(), new Date('2021-05-27'), 4, false));    
   }
 
   getAllTasks() {
