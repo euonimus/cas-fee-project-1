@@ -12,9 +12,6 @@ view.elementIdCreateDate.addEventListener('click', () => view.sortTasks(view.ele
 view.elementIdDueDate.addEventListener('click', () => view.sortTasks(view.elementIdDueDate));
 view.elementIdImportance.addEventListener('click', () => view.sortTasks(view.elementIdImportance));
 
-//theme click
-view.elementIdThemeButton.addEventListener('change', () => (view.elementIdThemeButton.value === "dark-theme") ? document.body.classList.add("dark-theme") : document.body.classList.remove("dark-theme"));
-
 //popup clicks
 view.elementBtnNew.addEventListener('click', () => viewPopup.showPopup(true));
 view.elementPopupBtnCancle.addEventListener('click', () => viewPopup.showPopup(false));

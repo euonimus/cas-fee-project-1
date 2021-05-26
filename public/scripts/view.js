@@ -1,31 +1,29 @@
 export default class View {
-  htmlTemplateNewTask = Handlebars.compile(
-            `<div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
-              <div>{{title}}</div>
-              <div>{{importance}}</div>
-              <div class="task_edit"><button id="{{id}}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
-              <div><label><input id="{{id}}" type="checkbox" {{checked}} data-list-btn-finish/>erledigt</label></div>
-            <div class="task-desc"><textarea readonly rows="4">{{descr}}</textarea>
-            </div>`);
-
   constructor(taskManager, viewPopup) {
     this.taskManager = taskManager;
     this.viewPopup = viewPopup;
     this.lastSortElementId = undefined;
 
     //cons ElemendIds
-    this.elementIdTaskList    = document.querySelector("#task_list");
-    this.elementIdFinished    = document.getElementById("by_finished");
-    this.elementIdCreateDate  = document.getElementById("by_createDate");
-    this.elementIdDueDate     = document.getElementById("by_dueDate");    
-    this.elementIdImportance  = document.getElementById("by_importance");
-    this.elementIdThemeButton = document.getElementById("theme_button");
-    
+    this.elementIdTaskList     = document.querySelector("#task_list");
+    this.elementIdFinished     = document.getElementById("by_finished");
+    this.elementIdCreateDate   = document.getElementById("by_createDate");
+    this.elementIdDueDate      = document.getElementById("by_dueDate");    
+    this.elementIdImportance   = document.getElementById("by_importance");
     this.elementBtnNew         = document.querySelector("[data-list-btn-new]");
     this.elementBtnEdit        = document.querySelector("[data-list-btn-edit]");
     this.elementPopupBtnSave   = document.querySelector("[data-popup-btn-save]");
     this.elementPopupBtnCancle = document.querySelector("[data-popup-btn-cancle]"); 
     this.elementPopupBtnDelete = document.querySelector("[data-popup-btn-delete]");
+
+    this.htmlTemplateNewTask = Handlebars.compile(
+            `<div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
+              <div>{{title}}</div>
+              <div>{{importance}}</div>
+              <div class="task_edit"><button id="{{id}}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
+              <div><label><input id="{{id}}" type="checkbox" {{checked}} data-list-btn-finish/>erledigt</label></div>
+            <div class="task-desc"><textarea readonly rows="4">{{descr}}</textarea>
+            </div>`);    
   }
 
   HTMLdueDate(dueDate) {
