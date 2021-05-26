@@ -1,6 +1,6 @@
-import TaskManager from './taskManager.js';
-import View from './view.js';
-import ViewPopup from './viewPopup.js';
+import {TaskManager} from './taskManager.js';
+import {View} from './view.js';
+import {ViewPopup} from './viewPopup.js';
 
 const taskManager = new TaskManager();
 const viewPopup = new ViewPopup(taskManager);

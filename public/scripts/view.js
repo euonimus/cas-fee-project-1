@@ -1,4 +1,4 @@
-export default class View {
+export class View {
   constructor(taskManager, viewPopup) {
     this.taskManager = taskManager;
     this.viewPopup = viewPopup;

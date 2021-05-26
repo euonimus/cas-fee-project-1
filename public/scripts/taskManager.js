@@ -1,6 +1,6 @@
-import Task from './task.js';
+import {Task} from './task.js';
 
-export default class TaskManager {
+export class TaskManager {
   constructor() {
     this.taskArray = [];
 

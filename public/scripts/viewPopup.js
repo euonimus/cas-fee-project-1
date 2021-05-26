@@ -1,6 +1,6 @@
-import Task from "./task.js";
+import {Task} from "./task.js";
 
-export default class ViewPopup {
+export class ViewPopup {
   constructor(taskManager) {
     this.taskManager = taskManager;
     this.task = new Task();
