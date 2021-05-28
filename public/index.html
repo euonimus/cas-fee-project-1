@@ -16,6 +16,11 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="./scripts/main.js" defer></script>
+    <script
+      type="module"
+      src="./scripts/controllers/task-controller.js"
+    ></script>
     <link href="css/main.css" rel="stylesheet" />
     <link href="css/popup.css" rel="stylesheet" />
   </head>
@@ -49,12 +54,14 @@
       <div class="sort-flex">
         <button class="btn sort" data-list-btn-new>Neuer Task erstellen</button>
         <label>Sortieren nach</label>
-        <button id="by_finished" class="btn sort">Nur erledigte</button>
-        <button id="by_dueDate" class="btn sort">Nach Fälligkeit</button>
-        <button id="by_createDate" class="btn sort">
+        <button class="btn sort" data-list-btn-finish>Nur erledigte</button>
+        <button class="btn sort" data-list-btn-dueDate>Nach Fälligkeit</button>
+        <button class="btn sort" data-list-btn-createDate>
           Nach Erstellungsdatum
         </button>
-        <button id="by_importance" class="btn sort">Nach Dringlichkeit</button>
+        <button class="btn sort" data-list-btn-importance>
+          Nach Dringlichkeit
+        </button>
       </div>
       <div class="tasks" id="task_list"></div>
 
@@ -95,7 +102,7 @@
                 />
               </div>
               <div><label>Erledigt</label></div>
-              <div><input type="checkbox" data-popup-finished /></div>
+              <div><input type="checkbox" data-popup-finish /></div>
               <div><label>Angelegt am</label></div>
               <div><label data-popup-createdate></label></div>
               <div class="btn-flex">
@@ -117,7 +124,5 @@
       integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
       src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     ></script>
-    <script src="./scripts/main.js" defer></script>
-    <script type="module" src="./scripts/controller.js"></script>
   </body>
 </html>
