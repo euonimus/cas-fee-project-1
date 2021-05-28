@@ -5,7 +5,7 @@ class TaskController {
   constructor() {
     this.viewPopup = new ViewPopup(taskService, this);
     this.lastSortElementId = undefined;
-    
+
     //cons ElemendIds
     this.elementIdTaskList      = document.querySelector("#task_list");
     this.elementBtnFinish       = document.querySelector("[data-list-btn-finish]");
@@ -15,14 +15,13 @@ class TaskController {
     this.elementBtnNew          = document.querySelector("[data-list-btn-new]");
     this.elementBtnEdit         = document.querySelector("[data-list-btn-edit]"); 
 
-    this.htmlTemplateNewTask = Handlebars.compile(
-            `<div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
-              <div>{{title}}</div>
-              <div>{{importance}}</div>
-              <div class="task_edit"><button id="{{id}}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
-              <div><label><input id="{{id}}" type="checkbox" {{checked}} data-list-btn-finish/>erledigt</label></div>
-            <div class="task-desc"><textarea readonly rows="4">{{descr}}</textarea>
-            </div>`);    
+    this.htmlTemplateShowTask = Handlebars.compile(`
+        <div><span class='task-title'>{{title}}</span></div>
+        <div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
+        <div>{{importance}}</div>
+        <div class="task_edit"><button id="{{id}}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
+        <div><label><input id="{{id}}" type="checkbox" {{finish.checked}} data-list-btn-finish/>{{finish.text}}</label></div>
+        <div class="task-desc"><textarea readonly rows="4">{{descr}}</textarea></div>`);    
   }
   
   initEventHandlers() {
@@ -68,23 +67,23 @@ class TaskController {
 
     this.elementIdTaskList.innerHTML = "";
     if (taskArray.length === 0) {
-        const newTask = document.createElement("div");
-        newTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen verfügbar";
-        this.elementIdTaskList.appendChild(newTask);
+        const newElementTask = document.createElement("div");
+        newElementTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen verfügbar";
+        this.elementIdTaskList.appendChild(newElementTask);
     } else {
       taskArray.forEach((task) => {
-        const newTask = document.createElement("div");
-        newTask.classList.add("show_task");
-        newTask.innerHTML = this.htmlTemplateNewTask({
-          duedate:    this.htmlDueDate(task.dueDate),
+        const newElementTask = document.createElement("div");
+        newElementTask.classList.add("show_task");
+        newElementTask.innerHTML = this.htmlTemplateShowTask({
+          duedate:    (task.finish) ? {} : this.htmlDueDate(task.dueDate),
           title:      task.title,
           importance: Array(task.importance).fill("⚡").join(""),
           id:         task.id,
-          checked:    (task.finish) ? "checked" : "",
+          finish:     (task.finish) ? {checked: "checked", text: "erledigt"} : {checked: "", text: "noch zu erledigen"},
           descr:      task.descr
         });
-        this.registerEventHandlersPerTask(newTask, task.id);
-        this.elementIdTaskList.appendChild(newTask);
+        this.registerEventHandlersPerTask(newElementTask, task.id);
+        this.elementIdTaskList.appendChild(newElementTask);
       })
     }
   }
@@ -108,7 +107,7 @@ class TaskController {
 
   htmlDueDate(dueDate) {
     let dueDiff = moment.duration(moment(dueDate).diff(moment().startOf('day'))).asDays();
-    let stringDate = moment(dueDate).format("DD.MM.YYYY")
+    let stringDate = moment(dueDate).format("DD.MM.YY")
 
     if (dueDiff < -1) {
       return {class: "dueDate-tolate", text: "überfällig seit " + Math.abs(Math.round(dueDiff)) + " Tagen"};
