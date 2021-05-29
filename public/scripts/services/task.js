@@ -1,5 +1,5 @@
-export class Task {
-  constructor(id, title ="", descr ="", createDate = new Date(), dueDate = new Date(), importance = 3, finish = false) {
+export default class Task {
+  constructor(id, title = '', descr = '', createDate = new Date(), dueDate = new Date(), importance = 3, finish = false) {
     this.id = id;
     this.title = title;
     this.descr = descr;
@@ -17,7 +17,7 @@ export class Task {
       createDate: this.createDate,
       dueDate: this.dueDate,
       importance: this.importance,
-      finish: this.finish
+      finish: this.finish,
     };
   }
 }

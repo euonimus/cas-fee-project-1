@@ -1,14 +1,14 @@
 /* generell settings */
 * {
-  box-sizing: border-box;
-  margin: 0;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 :root {
-  --theme-background: white;
-  --theme-background-invert: black;
-  --theme-color: black;
-  --theme-color-invert: white;
+    --theme-background: white;
+    --theme-background-invert: black;
+    --theme-color: black;
+    --theme-color-invert: white;
 }
 
 body,
@@ -16,197 +16,202 @@ input,
 select,
 textarea,
 button {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--theme-color);
-  background-color: var(--theme-background);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--theme-color);
+    background-color: var(--theme-background);
 }
 
 h1,
 h2,
 h3 {
-  background-color: orange;
-  padding: 1rem;
-  border-radius: 5px;
+    background-color: orange;
+    padding: 1rem;
+    border-radius: 5px;
 }
 
 p {
-  padding: 0.25rem 0;
+    padding: 0.25rem 0;
 }
 
 a {
-  text-decoration: none;
-  color: var(--theme-color-invert);
+    text-decoration: none;
+    color: var(--theme-color-invert);
 }
 
 /* input-styles */
 input::placeholder {
-  color: grey;
+    color: grey;
 }
 
 .btn {
-  font-weight: 600;
-  background-color: orange;
-  text-decoration: none;
-  border: 0;
-  font-size: 1em;
-  padding: 10px;
-  cursor: pointer;
-  color: var(--theme-color-invert);
-  border-radius: 5px;
+    font-weight: 600;
+    background-color: orange;
+    text-decoration: none;
+    border: 0;
+    font-size: 1em;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--theme-color-invert);
+    border-radius: 5px;
 }
 
-.nav-menu:hover,
 .btn:hover {
-  transition: background-color 0.4s;
-  font-weight: 600;
-  background-color: darkorange;
+    transition: background-color 0.4s;
+    font-weight: 600;
+    background-color: darkorange;
 }
 
 .sel {
-  margin: 10px;
+    margin: 10px;
 }
 
 /* .current importaner then .btn */
 .current {
-  font-weight: 600;
-  color: var(--theme-color);
-  background-color: darkorange;
+    font-weight: 600;
+    color: var(--theme-color);
+    background-color: darkorange;
 }
 
 /* themes */
 .dark-theme {
-  --theme-background: black;
-  --theme-background-invert: white;
-  --theme-color: white;
-  --theme-color-invert: black;
+    --theme-background: black;
+    --theme-background-invert: white;
+    --theme-color: white;
+    --theme-color-invert: black;
 }
 
 /* site grid */
 .site {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
 }
 
 .site .header {
-  grid-area: header;
-  background-color: orange;
-  text-align: center;
-  position: sticky;
-  top: 0;
+    grid-area: header;
+    background-color: orange;
+    text-align: center;
+    position: sticky;
+    top: 0;
 }
 
 .site .main {
-  grid-area: main;
-  padding: 20px;
-  margin: 5px;
-  line-height: 1.7em;
+    grid-area: main;
+    padding: 20px;
+    margin: 5px;
+    line-height: 1.7em;
 }
 
 .site .footer {
-  grid-area: footer;
-  padding: 20px;
-  background: orange;
-  color: var(--theme-color);
+    grid-area: footer;
+    padding: 20px;
+    background: orange;
+    color: var(--theme-color);
 }
 
 /* navbar */
 .nav {
-  display: flex;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-menu {
-  width: 150px;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.nav-menu:hover {
+    transition: background-color 0.4s;
+    font-weight: 600;
+    background-color: darkorange;
 }
 
 /* nav-menu:hoover is same like btn:hoover > in generell settings */
 
 /* tasks */
 .tasks {
-  display: grid;
+    display: grid;
 }
 
 .tasks > div {
-  margin: 20px 5px;
-  border-radius: 5px;
+    margin: 20px 5px;
+    border-radius: 5px;
 }
 
 .tasks > div > div {
-  padding: 5px;
+    padding: 5px;
 }
 
 .tasks input,
 .tasks textarea {
-  width: 100%;
-  resize: none;
-  border: 1px solid;
-  border-radius: 5px;
+    width: 100%;
+    resize: none;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
 .tasks input[type*="checkbox"] {
-  width: 10%;
+    width: 10%;
 }
 
 /* show task */
 .show_task {
-  display: grid;
-  grid-template-columns: 20% 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 20% 1fr 1fr 1fr;
 }
 
 .show_task > .task-desc {
-  grid-column: 2 / 4;
+    grid-column: 2 / 4;
 }
 
 .show_task > .task-edit {
-  grid-column: 4;
-  grid-row: 1 / 3;
-  display: flex;
-  align-items: center;
+    grid-column: 4;
+    grid-row: 1 / 3;
+    display: flex;
+    align-items: center;
 }
 
 .task-title {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 /* new task */
 .new_task {
-  display: grid;
-  grid-template-columns: 15% 1fr;
+    display: grid;
+    grid-template-columns: 15% 1fr;
 }
 
 .new_task .btn-flex {
-  grid-column: 1 / span 2;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .new_task .btn {
-  min-width: 25%;
+    min-width: 25%;
 }
 
 /* sort buttons */
 .sort-flex {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 50px;
-  margin: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    margin: 5px;
 }
 
 .sort-flex .btn {
-  min-width: 15%;
+    min-width: 15%;
 }
 
 /* .sort .current::after {
@@ -214,19 +219,21 @@ input::placeholder {
 } */
 
 .sort-flex .current::after {
-  content: " ⇓";
+    content: " ⇓";
 }
 
 /* dueDate styles */
 .dueDate-tolate {
-  color: red;
-  font-weight: bold;
+    color: red;
+    font-weight: bold;
 }
+
 .dueDate-short {
-  color: orange;
-  font-weight: bold;
+    color: orange;
+    font-weight: bold;
 }
+
 .dueDate-easy {
-  color: green;
-  font-weight: bold;
+    color: green;
+    font-weight: bold;
 }
