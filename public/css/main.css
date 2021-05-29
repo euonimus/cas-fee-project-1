@@ -125,7 +125,8 @@ input::placeholder {
 
 .nav-menu {
   width: 150px;
-  padding: 10px 0;
+  padding: 10px;
+  margin: 10px;
   border-radius: 5px;
 }
 

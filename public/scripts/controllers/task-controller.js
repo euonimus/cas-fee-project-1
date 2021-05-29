@@ -1,9 +1,9 @@
 import {taskService} from '../services/task-service.js';
-import {ViewPopup} from '../viewPopup.js';
+import {popupController} from './popup-Controller.js';
 
 class TaskController {
   constructor() {
-    this.viewPopup = new ViewPopup(taskService, this);
+    this.popupController = new popupController(taskService, this);
     this.lastSortElementId = undefined;
 
     //cons ElemendIds
@@ -31,12 +31,12 @@ class TaskController {
     this.elementBtnImportance.addEventListener('click', ()  => this.sortTasks(this.elementBtnImportance));
 
     //popup clicks
-    this.elementBtnNew.addEventListener('click', () => this.viewPopup.showPopup(true));
+    this.elementBtnNew.addEventListener('click', () => this.ViewController.showPopup(true));
   }
 
   registerEventHandlersPerTask(newTask, taskId) {
     //register event listener for task
-    newTask.querySelector('[data-list-btn-edit]').addEventListener('click', () => this.viewPopup.showPopup(true, taskId));
+    newTask.querySelector('[data-list-btn-edit]').addEventListener('click', () => this.popupController.showPopup(true, taskId));
 
     newTask.querySelector('[data-list-btn-finish]').addEventListener('click', () => {
       taskService.changeFinish(taskId);

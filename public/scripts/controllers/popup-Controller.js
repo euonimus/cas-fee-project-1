@@ -1,6 +1,6 @@
-import {Task} from "./services/task.js";
+import {Task} from "../services/task.js";
 
-export class ViewPopup {
+export class popupController {
   constructor(taskService, taskController) {
     this.taskController    = taskController;
     this.taskService       = taskService;
