@@ -30,7 +30,6 @@ export default class popupController {
 
   initEventHandlers() {
     this.elementPopupBtnCancle.addEventListener('click', () => this.showPopup(false));
-    this.elementPopupBtnCancle.addEventListener('click', () => this.showPopup(false));
 
     this.elementPopupImportance1.addEventListener('click', () => this.updateAndDisplayImportance(1));
     this.elementPopupImportance2.addEventListener('click', () => this.updateAndDisplayImportance(2));
@@ -51,7 +50,7 @@ export default class popupController {
        taskService.deleteTask(this.task);
 
        this.taskController.showTaskList();
-    });
+    }); 
   }
 
   showPopup(display, id = 0) {

@@ -5,6 +5,7 @@ class TaskController {
   constructor() {
     this.popupController = new popupController(this);
     this.lastSortElementId = undefined;
+    this.filterFinish = 0;
 
     // ElemendIds
     this.elementIdTaskList = document.querySelector('[data-list]');
@@ -25,13 +26,20 @@ class TaskController {
   }
 
   initEventHandlers() {
-    this.elementBtnFinish.addEventListener('click', () => this.sortTasks(this.elementBtnFinish));
-    this.elementBtnDueDate.addEventListener('click', () => this.sortTasks(this.elementBtnDueDate));
-    this.elementBtnCreateDate.addEventListener('click', () => this.sortTasks(this.elementBtnCreateDate));
-    this.elementBtnImportance.addEventListener('click', () => this.sortTasks(this.elementBtnImportance));
+    this.elementBtnFinish.addEventListener('click', () => this.sortTaskList(this.elementBtnFinish));
+    this.elementBtnDueDate.addEventListener('click', () => this.sortTaskList(this.elementBtnDueDate));
+    this.elementBtnCreateDate.addEventListener('click', () => this.sortTaskList(this.elementBtnCreateDate));
+    this.elementBtnImportance.addEventListener('click', () => this.sortTaskList(this.elementBtnImportance));
 
     // popup clicks
     this.elementBtnNew.addEventListener('click', () => this.popupController.showPopup(true));
+  
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', () => {
+      if (event.target == this.popupController.popup) {
+        this.popupController.showPopup(false);
+      }
+    });
   }
 
   registerEventHandlersPerTask(newTask, taskId) {
@@ -45,22 +53,26 @@ class TaskController {
   }
 
   showTaskList(elementId = this.lastSortElementId) {
-    let taskArray = [];
-    switch (elementId) {
-      case this.elementBtnFinish:
-        taskArray = taskService.getOnlyFinished();
+    let taskArray = taskService.getTaskList();
+
+    switch(this.filterFinish) {
+      case 1:
+        taskArray = taskArray.filter(task => task.finish === true);
         break;
+      case 2:
+        taskArray = taskArray.filter(task => task.finish === false)
+        break;
+    }
+
+    switch (elementId) {
       case this.elementBtnDueDate:
-        taskArray = taskService.getSortedByDueDate();
+        taskArray.sort((t1, t2) => (t1.dueDate - t2.dueDate));
         break;
       case this.elementBtnCreateDate:
-        taskArray = taskService.getSortedByCreateDate();
+        taskArray.sort((t1, t2) => (t2.createDate - t1.createDate));
         break;
       case this.elementBtnImportance:
-        taskArray = taskService.getSortedByImportance();
-        break;
-      default:
-        taskArray = taskService.getAllTasks();
+        taskArray.sort((t1, t2) => (t2.importance - t1.importance));
         break;
     }
 
@@ -87,20 +99,32 @@ class TaskController {
     }
   }
 
-  sortTasks(paramElementId) {
-    let elementId = paramElementId;
-    if (elementId.classList.contains('current')) {
-      // if already set > do unset
-      elementId = undefined;
-    }
-    this.lastSortElementId = elementId;
-    this.elementBtnFinish.classList.toggle('current', false);
-    this.elementBtnDueDate.classList.toggle('current', false);
-    this.elementBtnCreateDate.classList.toggle('current', false);
-    this.elementBtnImportance.classList.toggle('current', false);
-
-    if (elementId !== undefined) {
-      elementId.classList.toggle('current', true);
+  sortTaskList(elementId) {
+    if (elementId  == this.elementBtnFinish) {
+      // btn filterFinish is additional for the sort btn
+      switch (this.filterFinish) {
+        case 0: // show only finished
+          elementId.innerHTML = "nur erledigte";
+          elementId.classList.toggle('current', true);
+          this.filterFinish = 1;
+          break;          
+        case 1: // show only not finished
+          elementId.innerHTML = "nur offene";
+          elementId.classList.toggle('current', true);
+          this.filterFinish = 2;
+          break;          
+        case 2: // no filter
+          elementId.innerHTML ="nein";
+          elementId.classList.toggle('current', false);
+          this.filterFinish = 0;
+          break;          
+      }
+    } else {
+      this.lastSortElementId = elementId;
+      this.elementBtnDueDate.classList.toggle('current', false);
+      this.elementBtnCreateDate.classList.toggle('current', false);
+      this.elementBtnImportance.classList.toggle('current', false);
+      elementId.classList.toggle('current', true); 
     }
     this.showTaskList(elementId);
   }
@@ -127,7 +151,7 @@ class TaskController {
   initialize() {
       this.initEventHandlers();
       taskService.loadData();
-      this.showTaskList();
+      this.sortTaskList(this.elementBtnDueDate);
   }
 }
 

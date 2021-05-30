@@ -2,7 +2,7 @@
 <html lang="de">
     <head>
         <meta charset="UTF-8" />
-        <title>Note App RJB</title>
+        <title>Task App RJB</title>
         <link
             crossorigin="anonymous"
             href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -51,16 +51,15 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Aliquam, similique.!
             </p>
+            <button class="btn sort" data-list-btn-new>
+                Neuer Task erstellen
+            </button>
             <div class="sort-flex">
-                <button class="btn sort" data-list-btn-new>
-                    Neuer Task erstellen
-                </button>
-                <label>Sortieren nach</label>
-                <button class="btn sort" data-list-btn-finish>
-                    Nur erledigte
-                </button>
+                <label>Filtern nach Erledigung</label>
+                <button class="btn sort" data-list-btn-finish>nein</button>
+                <label>Sortieren</label>
                 <button class="btn sort" data-list-btn-dueDate>
-                    Nach Fälligkeit
+                    nach Fälligkeit
                 </button>
                 <button class="btn sort" data-list-btn-createDate>
                     Nach Erstellungsdatum

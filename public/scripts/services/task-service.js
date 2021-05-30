@@ -8,15 +8,15 @@ class TaskService {
     }
 
     loadData() {
-        this.taskList = this.storage.getAll().map(t => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finished));
+        // this.taskList = this.storage.getAll().map(t => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finish));
 
         if (this.taskList.length === 0) { // initial data seed
-            this.taskList.push(new Task(1, 'Projektarbeit 1', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', new Date('2021-05-22'), new Date('2021-06-27'), 5, false));
-            this.taskList.push(new Task(2, 'Projektarbeit 2', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-23'), 3, true));
-            this.taskList.push(new Task(3, 'Projektarbeit 3', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-24'), 3, true));
-            this.taskList.push(new Task(4, 'Projektarbeit 4', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-25'), 3, true));
-            this.taskList.push(new Task(5, 'Projektarbeit 5', 'Mal damit beginnen', new Date('2021-05-10'), new Date('2021-05-26'), 3, true));
-            this.taskList.push(new Task(6, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', new Date(), new Date('2021-05-27'), 4, false));
+            this.taskList.push(new Task(1, 'Projektarbeit', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', new Date('2021-05-19'), new Date('2021-06-27'), 5, false));
+            this.taskList.push(new Task(2, 'dummy 1', 'Lorem ipsum dolor', new Date('2021-05-10'), new Date('2021-05-23'), 3, true));
+            // this.taskList.push(new Task(3, 'dummy 2', 'Lorem ipsum dolor', new Date('2021-05-11'), new Date('2021-05-24'), 3, true));
+            // this.taskList.push(new Task(4, 'dummy 3', 'Lorem ipsum dolor', new Date('2021-05-12'), new Date('2021-05-25'), 3, true));
+            // this.taskList.push(new Task(5, 'dummy 4', 'Lorem ipsum dolor', new Date('2021-05-13'), new Date('2021-05-26'), 3, true));
+            this.taskList.push(new Task(10, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', new Date(), new Date('2021-05-27'), 4, false));
             this.save();
         }
     }
@@ -25,24 +25,8 @@ class TaskService {
         this.storage.update(this.taskList.map(t => t.toJSON()));
     }
 
-    getAllTasks() {
+    getTaskList() {
         return this.taskList;
-    }
-
-    getOnlyFinished() {
-        return this.taskList.filter(task => task.finish === true);
-    }
-
-    getSortedByCreateDate() {
-        return this.taskList.sort((t1, t2) => (t2.createDate - t1.createDate));
-    }
-
-    getSortedByDueDate() {
-        return this.taskList.sort((t1, t2) => (t1.dueDate - t2.dueDate));
-    }
-
-    getSortedByImportance() {
-        return this.taskList.sort((t1, t2) => (t2.importance - t1.importance));
     }
 
     changeFinish(id) {
@@ -76,7 +60,7 @@ class TaskService {
     }
 
     getNewId() {
-        return this.taskList.length + 1;
+        return this.taskList.reduce((acc, task) => acc = acc > task.id ? acc : task.id, 0) + 1;
     }
 }
 
