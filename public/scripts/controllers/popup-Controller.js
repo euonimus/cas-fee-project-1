@@ -14,12 +14,8 @@ export default class popupController {
     this.elementFinish = document.querySelector('[data-popup-finish]');
     this.elementCreateDate = document.querySelector('[data-popup-createdate]');
 
-    this.elementPopupImportanceAll = document.querySelectorAll('.importance span');
-    this.elementPopupImportance1 = document.querySelector('[data-popup-importance1]');
-    this.elementPopupImportance2 = document.querySelector('[data-popup-importance2]');
-    this.elementPopupImportance3 = document.querySelector('[data-popup-importance3]');
-    this.elementPopupImportance4 = document.querySelector('[data-popup-importance4]');
-    this.elementPopupImportance5 = document.querySelector('[data-popup-importance5]');
+    this.elementPopupImportance = document.querySelector('[data-popup-importance]')
+    this.elementPopupImportanceValues = document.querySelectorAll('[data-popup-importance-value]');
 
     this.elementPopupBtnSave = document.querySelector('[data-popup-btn-save]');
     this.elementPopupBtnCancle = document.querySelector('[data-popup-btn-cancle]');
@@ -31,11 +27,7 @@ export default class popupController {
   initEventHandlers() {
     this.elementPopupBtnCancle.addEventListener('click', () => this.showPopup(false));
 
-    this.elementPopupImportance1.addEventListener('click', () => this.updateAndDisplayImportance(1));
-    this.elementPopupImportance2.addEventListener('click', () => this.updateAndDisplayImportance(2));
-    this.elementPopupImportance3.addEventListener('click', () => this.updateAndDisplayImportance(3));
-    this.elementPopupImportance4.addEventListener('click', () => this.updateAndDisplayImportance(4));
-    this.elementPopupImportance5.addEventListener('click', () => this.updateAndDisplayImportance(5));
+    this.elementPopupImportance.addEventListener('click', (event) => this.updateAndDisplayImportance(Number(event.target.dataset.popupImportanceValue)));
 
     this.elementPopupBtnSave.addEventListener('click', () => {
        this.showPopup(false);
@@ -84,6 +76,6 @@ export default class popupController {
 
   updateAndDisplayImportance(importance) {
     this.tmp_importance = importance;
-    this.elementPopupImportanceAll.forEach((element, index) => ((index < importance) ? element.classList.add('choice') : element.classList.remove('choice')));
+    this.elementPopupImportanceValues.forEach((element, index) => ((index < importance) ? element.classList.add('choice') : element.classList.remove('choice')));
   }
 }
