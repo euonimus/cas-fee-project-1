@@ -18,6 +18,28 @@
     border-radius: 5px;
 }
 
+/* new task */
+.new_task {
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    margin: 10px;
+}
+
+.new_task * {
+    margin: 10px 0;
+}
+
+.new_task .btn-flex {
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.new_task .btn {
+    min-width: 25%;
+}
+
 .popup-visible {
     display: block;
 }

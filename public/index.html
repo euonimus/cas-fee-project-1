@@ -9,17 +9,20 @@
             integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
             rel="stylesheet"
         />
-        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-        <script src="./scripts/main.js" defer></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+            referrerpolicy="no-referrer"
+        ></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
             integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
+        <script src="./scripts/helper.js" defer></script>
         <script
             type="module"
-            src="./scripts/controllers/task-controller.js"
+            src="./scripts/controllers/main-controller.js"
         ></script>
         <link href="css/main.css" rel="stylesheet" />
         <link href="css/popup.css" rel="stylesheet" />
@@ -39,7 +42,7 @@
                 </div>
                 <div>
                     <select class="sel" data-list-btn-theme>
-                        <option value="regular">White-Theme</option>
+                        <option value="white-theme">White-Theme</option>
                         <option value="dark-theme">Dark-Theme</option>
                     </select>
                 </div>
@@ -55,17 +58,17 @@
                 Neuer Task erstellen
             </button>
             <div class="sort-flex">
-                <label>Filtern nach Erledigung</label>
+                <label>Erledigung filtern:</label>
                 <button class="btn sort" data-list-btn-finish>nein</button>
-                <label>Sortieren</label>
+                <label>Sortieren nach:</label>
                 <button class="btn sort" data-list-btn-dueDate>
-                    nach Fälligkeit
+                    Fälligkeit
                 </button>
                 <button class="btn sort" data-list-btn-createDate>
-                    Nach Erstellungsdatum
+                    Erstellungsdatum
                 </button>
                 <button class="btn sort" data-list-btn-importance>
-                    Nach Dringlichkeit
+                    Dringlichkeit
                 </button>
             </div>
             <div class="tasks" data-list></div>
@@ -73,59 +76,55 @@
             <!-- popup -->
             <div class="popup" data-popup>
                 <div class="popup-content">
-                    <h2 data-popup-h2></h2>
-                    <div class="tasks">
-                        <div class="new_task">
-                            <div><label>Titel *</label></div>
-                            <div>
-                                <input
-                                    name="title"
-                                    type="text"
-                                    data-popup-title
-                                />
-                            </div>
-                            <div><label>Beschreibung</label></div>
-                            <div>
-                                <textarea
-                                    placeholder="möglichst genau beschreiben"
-                                    data-popup-descr
-                                ></textarea>
-                            </div>
-                            <div><label>Wichtigkeit</label></div>
-                            <div class="importance" data-popup-importance>
-                                <span data-popup-importance-value="1">⚡</span>
-                                <span data-popup-importance-value="2">⚡</span>
-                                <span data-popup-importance-value="3">⚡</span>
-                                <span data-popup-importance-value="4">⚡</span>
-                                <span data-popup-importance-value="5">⚡</span>
-                            </div>
-                            <div><label>Erledigen bis *</label></div>
-                            <div>
-                                <input
-                                    max="2023-12-31"
-                                    min="2021-01-01"
-                                    name="duedate"
-                                    type="date"
-                                    data-popup-duedate
-                                />
-                            </div>
-                            <div><label>Erledigt</label></div>
-                            <div>
-                                <input type="checkbox" data-popup-finish />
-                            </div>
-                            <div><label>Angelegt am</label></div>
-                            <div><label data-popup-createdate></label></div>
-                            <div class="btn-flex">
-                                <button class="btn" data-popup-btn-save>
-                                    Speichern
-                                </button>
-                                <button class="btn" data-popup-btn-delete>
-                                    Löschen
-                                </button>
-                                <button class="btn" data-popup-btn-cancle>
-                                    Abbrechen
-                                </button>
-                            </div>
+                    <h2 data-popup-h2>dummy title</h2>
+                    <div class="tasks new_task" data-popup-form>
+                        <label>Titel *</label>
+                        <input
+                            name="title"
+                            type="text"
+                            required
+                            minlength="5"
+                            maxlength="20"
+                            data-popup-title
+                        />
+                        <label>Beschreibung</label>
+                        <textarea
+                            placeholder="möglichst genau beschreiben"
+                            required
+                            maxlength="1024"
+                            data-popup-descr
+                        ></textarea>
+                        <label>Wichtigkeit</label>
+                        <div class="importance" data-popup-importance>
+                            <span data-popup-importance-value="1">⚡</span>
+                            <span data-popup-importance-value="2">⚡</span>
+                            <span data-popup-importance-value="3">⚡</span>
+                            <span data-popup-importance-value="4">⚡</span>
+                            <span data-popup-importance-value="5">⚡</span>
+                        </div>
+                        <label>Erledigen bis *</label>
+                        <input
+                            max="2023-12-31"
+                            min="2021-01-01"
+                            name="duedate"
+                            type="date"
+                            required
+                            data-popup-duedate
+                        />
+                        <label>Erledigt</label>
+                        <input type="checkbox" data-popup-finish />
+                        <label>Angelegt am</label>
+                        <label data-popup-createdate></label>
+                        <div class="btn-flex">
+                            <button class="btn" data-popup-btn-save>
+                                Speichern
+                            </button>
+                            <button class="btn" data-popup-btn-delete>
+                                Löschen
+                            </button>
+                            <button class="btn" data-popup-btn-cancle>
+                                Abbrechen
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -134,11 +133,5 @@
         <footer class="footer">
             <p>&copy; Reto Bischofberger, CAS FEE 2021 - Project 1</p>
         </footer>
-        <script
-            crossorigin="anonymous"
-            defer
-            integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
-            src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-        ></script>
     </body>
 </html>

@@ -8,7 +8,7 @@ class TaskService {
     }
 
     loadData() {
-        // this.taskList = this.storage.getAll().map(t => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finish));
+        this.taskList = this.storage.getAll().map(t => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finish));
 
         if (this.taskList.length === 0) { // initial data seed
             this.taskList.push(new Task(1, 'Projektarbeit', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', new Date('2021-05-19'), new Date('2021-06-27'), 5, false));

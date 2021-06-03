@@ -8,13 +8,14 @@ export default class popupController {
     this.taskListElement = document.querySelector('#task_list');
     this.popup = document.querySelector('[data-popup]');
     this.elementH2 = document.querySelector('[data-popup-h2]');
+    this.elementForm = document.querySelector('[data-popup-form]');    
     this.elementTitle = document.querySelector('[data-popup-title]');
     this.elementDescr = document.querySelector('[data-popup-descr]');
     this.elementDueDate = document.querySelector('[data-popup-duedate]');
     this.elementFinish = document.querySelector('[data-popup-finish]');
     this.elementCreateDate = document.querySelector('[data-popup-createdate]');
 
-    this.elementPopupImportance = document.querySelector('[data-popup-importance]')
+    this.elementPopupImportance = document.querySelector('[data-popup-importance]');
     this.elementPopupImportanceValues = document.querySelectorAll('[data-popup-importance-value]');
 
     this.elementPopupBtnSave = document.querySelector('[data-popup-btn-save]');
@@ -30,19 +31,19 @@ export default class popupController {
     this.elementPopupImportance.addEventListener('click', (event) => this.updateAndDisplayImportance(Number(event.target.dataset.popupImportanceValue)));
 
     this.elementPopupBtnSave.addEventListener('click', () => {
-       this.showPopup(false);
-       this.mapData();
-       taskService.editTask(this.task);
-
-       this.taskController.showTaskList();
+      // if (this.elementForm.checkValidity()) {
+        this.mapData();
+        taskService.editTask(this.task);
+        this.showPopup(false);
+        this.taskController.showTaskList();
+      // }
     });
 
     this.elementPopupBtnDelete.addEventListener('click', () => {
-       this.showPopup(false);
-       taskService.deleteTask(this.task);
-
-       this.taskController.showTaskList();
-    }); 
+      this.showPopup(false);
+      taskService.deleteTask(this.task);
+      this.taskController.showTaskList();
+    });
   }
 
   showPopup(display, id = 0) {

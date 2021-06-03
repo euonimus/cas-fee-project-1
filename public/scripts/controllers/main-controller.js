@@ -1,7 +1,8 @@
+// import moment from 'moment';
 import {taskService} from '../services/task-service.js';
 import popupController from './popup-controller.js';
 
-class TaskController {
+class MainController {
   constructor() {
     this.popupController = new popupController(this);
     this.lastSortElementId = undefined;
@@ -33,10 +34,10 @@ class TaskController {
 
     // popup clicks
     this.elementBtnNew.addEventListener('click', () => this.popupController.showPopup(true));
-  
+
     // When the user clicks anywhere outside of the modal, close it
-    window.addEventListener('click', () => {
-      if (event.target == this.popupController.popup) {
+    window.addEventListener('click', (event) => {
+      if (event.target === this.popupController.popup) {
         this.popupController.showPopup(false);
       }
     });
@@ -55,12 +56,12 @@ class TaskController {
   showTaskList(elementId = this.lastSortElementId) {
     let taskArray = taskService.getTaskList();
 
-    switch(this.filterFinish) {
+    switch (this.filterFinish) {
       case 1:
-        taskArray = taskArray.filter(task => task.finish === true);
+        taskArray = taskArray.filter((task) => task.finish === true);
         break;
       case 2:
-        taskArray = taskArray.filter(task => task.finish === false)
+        taskArray = taskArray.filter((task) => task.finish === false);
         break;
     }
 
@@ -100,31 +101,31 @@ class TaskController {
   }
 
   sortTaskList(elementId) {
-    if (elementId  == this.elementBtnFinish) {
+    if (elementId === this.elementBtnFinish) {
       // btn filterFinish is additional for the sort btn
       switch (this.filterFinish) {
         case 0: // show only finished
-          elementId.innerHTML = "nur erledigte";
-          elementId.classList.toggle('current', true);
+          this.elementBtnFinish.innerHTML = 'nur erledigte';
+          this.elementBtnFinish.classList.add('current');
           this.filterFinish = 1;
-          break;          
+          break;
         case 1: // show only not finished
-          elementId.innerHTML = "nur offene";
-          elementId.classList.toggle('current', true);
+          this.elementBtnFinish.innerHTML = 'nur offene';
+          this.elementBtnFinish.classList.add('current');
           this.filterFinish = 2;
-          break;          
+          break;
         case 2: // no filter
-          elementId.innerHTML ="nein";
-          elementId.classList.toggle('current', false);
+          this.elementBtnFinish.innerHTML = 'alle';
+          this.elementBtnFinish.classList.remove('current');
           this.filterFinish = 0;
-          break;          
+          break;
       }
     } else {
       this.lastSortElementId = elementId;
-      this.elementBtnDueDate.classList.toggle('current', false);
-      this.elementBtnCreateDate.classList.toggle('current', false);
-      this.elementBtnImportance.classList.toggle('current', false);
-      elementId.classList.toggle('current', true); 
+      this.elementBtnDueDate.classList.remove('current');
+      this.elementBtnCreateDate.classList.remove('current');
+      this.elementBtnImportance.classList.remove('current');
+      elementId.classList.add('current');
     }
     this.showTaskList(elementId);
   }
@@ -155,4 +156,4 @@ class TaskController {
   }
 }
 
-new TaskController().initialize();
+new MainController().initialize();
