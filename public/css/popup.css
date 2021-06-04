@@ -46,6 +46,7 @@
 
 .importance {
     cursor: pointer;
+    font-size: 2em;
 }
 
 .importance span {
@@ -53,7 +54,7 @@
 }
 
 .importance:hover span,
-.importance .choice {
+.importance .chosen {
     transition: opacity 0.2s;
     opacity: 1;
 }

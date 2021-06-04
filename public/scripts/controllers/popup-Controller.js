@@ -81,6 +81,6 @@ export default class popupController {
 
   updateAndDisplayImportance(importance) {
     this.tmp_importance = importance;
-    this.elementPopupImportanceValues.forEach((element, index) => ((index < importance) ? element.classList.add('choice') : element.classList.remove('choice')));
+    this.elementPopupImportanceValues.forEach((element, index) => ((index < importance) ? element.classList.add('chosen') : element.classList.remove('chosen')));
   }
 }
