@@ -11,12 +11,9 @@ class TaskService {
         this.taskList = this.storage.getAll().map(t => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finish));
 
         if (this.taskList.length === 0) { // initial data seed
-            this.taskList.push(new Task(1, 'Projektarbeit', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', new Date('2021-05-19'), new Date('2021-06-27'), 5, false));
-            this.taskList.push(new Task(2, 'dummy 1', 'Lorem ipsum dolor', new Date('2021-05-10'), new Date('2021-05-23'), 3, true));
-            // this.taskList.push(new Task(3, 'dummy 2', 'Lorem ipsum dolor', new Date('2021-05-11'), new Date('2021-05-24'), 3, true));
-            // this.taskList.push(new Task(4, 'dummy 3', 'Lorem ipsum dolor', new Date('2021-05-12'), new Date('2021-05-25'), 3, true));
-            // this.taskList.push(new Task(5, 'dummy 4', 'Lorem ipsum dolor', new Date('2021-05-13'), new Date('2021-05-26'), 3, true));
-            this.taskList.push(new Task(10, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', new Date(), new Date('2021-05-27'), 4, false));
+            this.taskList.push(new Task(1, 'Projektarbeit', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', giveDelayedDate(-2), giveDelayedDate(30), 5, false));
+            this.taskList.push(new Task(2, 'dummy 1', 'Lorem ipsum dolor', giveDelayedDate(-1), giveDelayedDate(3), 3, true));
+            this.taskList.push(new Task(10, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', giveDelayedDate(), giveDelayedDate(4), 4, false));
             this.save();
         }
     }

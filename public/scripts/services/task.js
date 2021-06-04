@@ -1,5 +1,5 @@
 export default class Task {
-  constructor(id, title = '', descr = '', createDate = new Date(), dueDate = new Date(), importance = 3, finish = false) {
+  constructor(id, title = '', descr = '', createDate = giveDelayedDate(), dueDate = giveDelayedDate(3), importance = 3, finish = false) {
     this.id = id;
     this.title = title;
     this.descr = descr;

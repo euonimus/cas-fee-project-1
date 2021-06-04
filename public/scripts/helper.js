@@ -1,7 +1,7 @@
 /* Cookie */
 function setCookie(name, value, expdays) {
-  const expires = moment().add(2, "days").add(2, "hours" /* UTC to CET */).toDate();
-  document.cookie = name + "=" + value + ";expires="+ expires.toUTCString();
+  const expires = moment().add(2, 'days').add(2, 'hours' /* UTC to CET */).toDate();
+  document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
 }
 
  function getCookie(name) {
@@ -15,12 +15,16 @@ document.querySelector('[data-list-btn-theme]').addEventListener('change', () =>
 function setTheme(theme = 'white-theme') {
     if (theme === 'dark-theme') {
         document.body.classList.add('dark-theme');
-        setCookie("theme", "dark-theme", 1);
+        setCookie('theme', 'dark-theme', 1);
     } else {
         document.body.classList.remove('dark-theme');
-        setCookie("theme", "white-theme", 1);
+        setCookie('theme', 'white-theme', 1);
     }
     document.querySelector('[data-list-btn-theme]').value = theme; //necessary for setting the dropdown in case of html switching and load from cookie    
+}
+
+function giveDelayedDate(delayDays = 0) {
+    return moment().add(delayDays, 'days').format('YYYY-MM-DD');
 }
 
 setTheme(getCookie('theme'));

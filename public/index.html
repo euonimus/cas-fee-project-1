@@ -61,13 +61,13 @@
                 <label>Erledigung filtern:</label>
                 <button class="btn sort" data-list-btn-finish>nein</button>
                 <label>Sortieren nach:</label>
-                <button class="btn sort" data-list-btn-dueDate>
+                <button class="btn sort" type="button" data-list-btn-dueDate>
                     Fälligkeit
                 </button>
-                <button class="btn sort" data-list-btn-createDate>
+                <button class="btn sort" type="button" data-list-btn-createDate>
                     Erstellungsdatum
                 </button>
-                <button class="btn sort" data-list-btn-importance>
+                <button class="btn sort" type="button" data-list-btn-importance>
                     Dringlichkeit
                 </button>
             </div>
@@ -83,8 +83,8 @@
                             name="title"
                             type="text"
                             required
-                            minlength="5"
-                            maxlength="20"
+                            minlength="3"
+                            maxlength="32"
                             data-popup-title
                         />
                         <label>Beschreibung *</label>
@@ -104,8 +104,6 @@
                         </div>
                         <label>Erledigen bis *</label>
                         <input
-                            max="2023-12-31"
-                            min="2021-01-01"
                             name="duedate"
                             type="date"
                             required
@@ -119,10 +117,10 @@
                             <button class="btn" data-popup-btn-save>
                                 Speichern
                             </button>
-                            <button class="btn" data-popup-btn-delete>
+                            <button class="btn" type="button" data-popup-btn-delete>
                                 Löschen
                             </button>
-                            <button class="btn" data-popup-btn-cancle>
+                            <button class="btn" type="button" data-popup-btn-cancle>
                                 Abbrechen
                             </button>
                         </div>

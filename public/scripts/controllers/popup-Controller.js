@@ -2,16 +2,17 @@ import {taskService} from '../services/task-service.js';
 import Task from '../services/task.js';
 
 export default class popupController {
-  constructor(taskController) {
-    this.taskController = taskController;
+  constructor(mainController) {
+    this.mainController = mainController;
     this.tmp_importance = undefined;
-    this.taskListElement = document.querySelector('#task_list');
     this.popup = document.querySelector('[data-popup]');
     this.elementH2 = document.querySelector('[data-popup-h2]');
     this.elementForm = document.querySelector('[data-popup-form]');    
     this.elementTitle = document.querySelector('[data-popup-title]');
     this.elementDescr = document.querySelector('[data-popup-descr]');
     this.elementDueDate = document.querySelector('[data-popup-duedate]');
+    this.elementDueDate.min = giveDelayedDate();
+    this.elementDueDate.max = giveDelayedDate(720);
     this.elementFinish = document.querySelector('[data-popup-finish]');
     this.elementCreateDate = document.querySelector('[data-popup-createdate]');
 
@@ -34,7 +35,7 @@ export default class popupController {
       if (this.elementForm.checkValidity()) {
         this.mapData();
         taskService.editTask(this.task);
-        this.taskController.showTaskList();
+        this.mainController.showTaskList();
         this.showPopup(false);        
       }
     });
@@ -45,7 +46,7 @@ export default class popupController {
 
     this.elementPopupBtnDelete.addEventListener('click', () => {
       taskService.deleteTask(this.task);
-      this.taskController.showTaskList();
+      this.mainController.showTaskList();
       this.showPopup(false);      
     });
   }
