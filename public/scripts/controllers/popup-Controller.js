@@ -31,18 +31,22 @@ export default class popupController {
     this.elementPopupImportance.addEventListener('click', (event) => this.updateAndDisplayImportance(Number(event.target.dataset.popupImportanceValue)));
 
     this.elementPopupBtnSave.addEventListener('click', () => {
-      // if (this.elementForm.checkValidity()) {
+      if (this.elementForm.checkValidity()) {
         this.mapData();
         taskService.editTask(this.task);
-        this.showPopup(false);
         this.taskController.showTaskList();
-      // }
+        this.showPopup(false);        
+      }
     });
 
+    //explanation!!!
+    //to use checkValidity() we need a form, but we don't want to submit or reload the page > suppression submit. That was hard...
+    this.elementForm.addEventListener('submit', (event) => event.preventDefault());
+
     this.elementPopupBtnDelete.addEventListener('click', () => {
-      this.showPopup(false);
       taskService.deleteTask(this.task);
       this.taskController.showTaskList();
+      this.showPopup(false);      
     });
   }
 
