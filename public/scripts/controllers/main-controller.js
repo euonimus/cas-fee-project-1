@@ -1,9 +1,12 @@
-import {taskService} from '../services/task-service.js';
-import popupController from './popup-controller.js';
+/* global moment, Handlebars */
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["htmlDueDate"] }] */
+import TaskService from '../services/task-service.js';
+import PopupController from './popup-controller.js';
 
 class MainController {
   constructor() {
-    this.popupController = new popupController(this);
+    this.taskService = new TaskService();
+    this.popupController = new PopupController(this, this.taskService);
     this.lastSortElementId = undefined;
     this.filterFinish = 0;
 
@@ -47,13 +50,13 @@ class MainController {
     newTask.querySelector('[data-list-btn-edit]').addEventListener('click', () => this.popupController.showPopup(true, taskId));
 
     newTask.querySelector('[data-list-btn-finish]').addEventListener('click', () => {
-      taskService.changeFinish(taskId);
+      this.taskService.changeFinish(taskId);
       this.showTaskList();
     });
   }
 
   showTaskList(elementId = this.lastSortElementId) {
-    let taskArray = taskService.getTaskList();
+    let taskArray = this.taskService.getTaskList();
 
     switch (this.filterFinish) {
       case 1:
@@ -69,7 +72,7 @@ class MainController {
         taskArray.sort((t1, t2) => (t1.dueDate - t2.dueDate));
         break;
       case this.elementBtnCreateDate:
-        taskArray.sort((t1, t2) => (t2.createDate - t1.createDate));
+        taskArray.sort((t1, t2) => (t1.createDate - t2.createDate));
         break;
       case this.elementBtnImportance:
         taskArray.sort((t1, t2) => (t2.importance - t1.importance));
@@ -150,7 +153,7 @@ class MainController {
 
   initialize() {
       this.initEventHandlers();
-      taskService.loadData();
+      this.taskService.loadData();
       this.sortTaskList(this.elementBtnDueDate);
   }
 }

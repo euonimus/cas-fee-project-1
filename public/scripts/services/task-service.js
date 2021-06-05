@@ -1,25 +1,26 @@
+/* global giveDate */
 import TaskStorage from './data/task-storage.js';
 import Task from './task.js';
 
-class TaskService {
+export default class TaskService {
     constructor(storage) {
         this.storage = storage || new TaskStorage();
         this.taskList = [];
     }
 
     loadData() {
-        this.taskList = this.storage.getAll().map(t => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finish));
+        this.taskList = this.storage.getAll().map((t) => new Task(t.id, t.title, t.descr, t.createDate, t.dueDate, t.importance, t.finish));
 
         if (this.taskList.length === 0) { // initial data seed
             this.taskList.push(new Task(1, 'Projektarbeit', 'Bis am 26. Juni muss die Projektarbeit 1 abgegeben sein!', giveDate(-2), giveDate(30), 5, false));
             this.taskList.push(new Task(2, 'dummy 1', 'Lorem ipsum dolor', giveDate(-1), giveDate(3), 3, true));
-            this.taskList.push(new Task(10, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', giveDate(), giveDate(4), 4, false));
+            this.taskList.push(new Task(10, 'Mama anrufen', 'Und mal wieder fragen, wie es ihr geht', giveDate(-3), giveDate(4), 4, false));
             this.save();
         }
     }
 
     save() {
-        this.storage.update(this.taskList.map(t => t.toJSON()));
+        this.storage.update(this.taskList.map((t) => t.toJSON()));
     }
 
     getTaskList() {
@@ -49,7 +50,7 @@ class TaskService {
     }
 
     getTask(id) {
-        return this.taskList.find((task) => parseInt(id) === parseInt(task.id));
+        return this.taskList.find((task) => Number(id) === Number(task.id));
     }
 
     getTaskIndex(task) {
@@ -57,8 +58,6 @@ class TaskService {
     }
 
     getNewId() {
-        return this.taskList.reduce((acc, task) => acc = acc > task.id ? acc : task.id, 0) + 1;
+        return Math.max.apply(null, this.taskList.map((task) => task.id)) + 1;
     }
 }
-
-export const taskService = new TaskService();

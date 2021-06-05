@@ -1,10 +1,11 @@
+/* global giveDate */
 export default class Task {
   constructor(id, title = '', descr = '', createDate = giveDate(), dueDate = giveDate(3), importance = 3, finish = false) {
     this.id = id;
     this.title = title;
     this.descr = descr;
-    this.createDate = createDate;
-    this.dueDate = dueDate;
+    this.createDate = new Date(createDate);
+    this.dueDate = new Date(dueDate);
     this.importance = importance;
     this.finish = finish;
   }

@@ -1,13 +1,14 @@
-import {taskService} from '../services/task-service.js';
+/* global moment, giveDate */
 import Task from '../services/task.js';
 
 export default class popupController {
-  constructor(mainController) {
+  constructor(mainController, taskService) {
     this.mainController = mainController;
+    this.taskService = taskService;
     this.tmp_importance = undefined;
     this.popup = document.querySelector('[data-popup]');
     this.elementH2 = document.querySelector('[data-popup-h2]');
-    this.elementForm = document.querySelector('[data-popup-form]');    
+    this.elementForm = document.querySelector('[data-popup-form]');
     this.elementTitle = document.querySelector('[data-popup-title]');
     this.elementDescr = document.querySelector('[data-popup-descr]');
     this.elementDueDate = document.querySelector('[data-popup-duedate]');
@@ -34,20 +35,20 @@ export default class popupController {
     this.elementPopupBtnSave.addEventListener('click', () => {
       if (this.elementForm.checkValidity()) {
         this.mapData();
-        taskService.editTask(this.task);
+        this.taskService.editTask(this.task);
         this.mainController.showTaskList();
-        this.showPopup(false);        
+        this.showPopup(false);
       }
     });
 
-    //explanation!!!
-    //to use checkValidity() we need a form, but we don't want to submit or reload the page > suppression submit. That was hard...
+    // explanation!!!
+    // to use checkValidity() we need a form, but we don't want to submit or reload the page > suppression submit. That was hard...
     this.elementForm.addEventListener('submit', (event) => event.preventDefault());
 
     this.elementPopupBtnDelete.addEventListener('click', () => {
-      taskService.deleteTask(this.task);
+      this.taskService.deleteTask(this.task);
       this.mainController.showTaskList();
-      this.showPopup(false);      
+      this.showPopup(false);
     });
   }
 
@@ -57,11 +58,11 @@ export default class popupController {
       if (id > 0) {
         this.elementH2.innerHTML = 'Bearbeite diesen Task';
         this.elementPopupBtnDelete.classList.remove('invisible');
-        this.task = taskService.getTask(id);
+        this.task = this.taskService.getTask(id);
       } else {
         this.elementH2.innerHTML = 'Erstelle einen neuen Task';
         this.elementPopupBtnDelete.classList.add('invisible');
-        this.task = new Task(taskService.getNewId());
+        this.task = new Task(this.taskService.getNewId());
       }
       this.elementTitle.value = this.task.title;
       this.elementDescr.value = this.task.descr;
