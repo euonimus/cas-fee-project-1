@@ -1,5 +1,5 @@
 .popup {
-    display: none;
+    display: block;
     position: fixed;
     padding-top: 100px;
     left: 0;
@@ -40,8 +40,8 @@
     min-width: 25%;
 }
 
-.popup-visible {
-    display: block;
+.invisible {
+    display: none;
 }
 
 .importance {

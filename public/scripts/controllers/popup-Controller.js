@@ -11,8 +11,8 @@ export default class popupController {
     this.elementTitle = document.querySelector('[data-popup-title]');
     this.elementDescr = document.querySelector('[data-popup-descr]');
     this.elementDueDate = document.querySelector('[data-popup-duedate]');
-    this.elementDueDate.min = giveDelayedDate();
-    this.elementDueDate.max = giveDelayedDate(720);
+    this.elementDueDate.min = giveDate();
+    this.elementDueDate.max = giveDate(3, 'years');
     this.elementFinish = document.querySelector('[data-popup-finish]');
     this.elementCreateDate = document.querySelector('[data-popup-createdate]');
 
@@ -53,12 +53,14 @@ export default class popupController {
 
   showPopup(display, id = 0) {
     if (display) {
-      this.popup.classList.add('popup-visible');
+      this.popup.classList.remove('invisible');
       if (id > 0) {
         this.elementH2.innerHTML = 'Bearbeite diesen Task';
+        this.elementPopupBtnDelete.classList.remove('invisible');
         this.task = taskService.getTask(id);
       } else {
         this.elementH2.innerHTML = 'Erstelle einen neuen Task';
+        this.elementPopupBtnDelete.classList.add('invisible');
         this.task = new Task(taskService.getNewId());
       }
       this.elementTitle.value = this.task.title;
@@ -68,7 +70,7 @@ export default class popupController {
       this.elementCreateDate.innerHTML = moment(this.task.createDate).format('DD.MM.YYYY');
       this.updateAndDisplayImportance(this.task.importance);
     } else {
-      this.popup.classList.remove('popup-visible');
+      this.popup.classList.add('invisible');
     }
   }
 

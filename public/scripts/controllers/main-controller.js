@@ -1,4 +1,3 @@
-// import moment from 'moment';
 import {taskService} from '../services/task-service.js';
 import popupController from './popup-controller.js';
 

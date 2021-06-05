@@ -15,10 +15,12 @@ body,
 input,
 select,
 textarea,
-button {
+button,
+label {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: var(--theme-color);
     background-color: var(--theme-background);
+    font-size: 1rem;
 }
 
 h1,
