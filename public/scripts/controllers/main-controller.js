@@ -25,7 +25,7 @@ class MainController {
         <div>{{importance}}</div>
         <div class='task_edit'><button id='{{id}}' class='btn' data-list-btn-edit>Bearbeiten</button></div>
         <div><label><input id='{{id}}' type='checkbox' {{finish.checked}} data-list-btn-finish/>{{finish.text}}</label></div>
-        <div class='task-desc'><textarea readonly rows='4'>{{descr}}</textarea></div>`);
+        <div class='task_desc'><textarea readonly rows='4'>{{descr}}</textarea></div>`);
   }
 
   initEventHandlers() {
