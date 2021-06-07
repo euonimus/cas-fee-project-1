@@ -102,6 +102,9 @@ a {
     padding: 20px;
     margin: 5px;
     line-height: 1.7em;
+    width: 90vw;
+    max-width: 1800px;
+    margin: 0px auto;
 }
 
 .site .footer {
@@ -162,7 +165,8 @@ a {
 .show_task > .task_edit {
     grid-column: 4;
     grid-row: 1 / 3;
-    margin: 20px;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
 }
 
