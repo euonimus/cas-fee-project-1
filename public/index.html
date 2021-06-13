@@ -9,10 +9,7 @@
             integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
             rel="stylesheet"
         />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
-            referrerpolicy="no-referrer"
-        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" referrerpolicy="no-referrer"></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
             integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
@@ -20,10 +17,7 @@
             referrerpolicy="no-referrer"
         ></script>
         <script src="./scripts/helper.js" defer></script>
-        <script
-            type="module"
-            src="./scripts/controllers/main-controller.js"
-        ></script>
+        <script type="module" src="./scripts/controllers/main-controller.js"></script>
         <link href="css/main.css" rel="stylesheet" />
         <link href="css/popup.css" rel="stylesheet" />
     </head>
@@ -50,26 +44,15 @@
         </header>
         <main class="main">
             <h2>Übersicht über deine Tasks</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aliquam, similique.!
-            </p>
-            <button class="btn sort" data-list-btn-new>
-                Neuer Task erstellen
-            </button>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, similique.!</p>
+            <button class="btn sort" data-list-btn-new>Neuer Task erstellen</button>
             <div class="sort-flex">
                 <label>Erledigung filtern:</label>
                 <button class="btn sort" data-list-btn-finish>nein</button>
                 <label>Sortieren nach:</label>
-                <button class="btn sort" type="button" data-list-btn-dueDate>
-                    Fälligkeit
-                </button>
-                <button class="btn sort" type="button" data-list-btn-createDate>
-                    Erstellungsdatum
-                </button>
-                <button class="btn sort" type="button" data-list-btn-importance>
-                    Dringlichkeit
-                </button>
+                <button class="btn sort" type="button" data-list-btn-dueDate>Fälligkeit</button>
+                <button class="btn sort" type="button" data-list-btn-createDate>Erstellungsdatum</button>
+                <button class="btn sort" type="button" data-list-btn-importance>Dringlichkeit</button>
             </div>
             <div class="tasks" data-list></div>
 
@@ -79,21 +62,9 @@
                     <h2 data-popup-h2>dummy title</h2>
                     <form class="tasks new_task" data-popup-form>
                         <label>Titel *</label>
-                        <input
-                            name="title"
-                            type="text"
-                            required
-                            minlength="3"
-                            maxlength="32"
-                            data-popup-title
-                        />
+                        <input name="title" type="text" required minlength="3" maxlength="32" data-popup-title />
                         <label>Beschreibung *</label>
-                        <textarea
-                            placeholder="möglichst genau beschreiben"
-                            required
-                            maxlength="1024"
-                            data-popup-descr
-                        ></textarea>
+                        <textarea placeholder="möglichst genau beschreiben" required maxlength="1024" data-popup-descr></textarea>
                         <label>Wichtigkeit</label>
                         <div class="importance" data-popup-importance>
                             <span data-popup-importance-value="1">⚡</span>
@@ -103,34 +74,15 @@
                             <span data-popup-importance-value="5">⚡</span>
                         </div>
                         <label>Erledigen bis *</label>
-                        <input
-                            name="duedate"
-                            type="date"
-                            required
-                            data-popup-duedate
-                        />
+                        <input name="duedate" type="date" required data-popup-duedate />
                         <label>Erledigt</label>
                         <input type="checkbox" data-popup-finish />
                         <label>Angelegt am</label>
                         <label data-popup-createdate></label>
                         <div class="btn-flex">
-                            <button class="btn" data-popup-btn-save>
-                                Speichern
-                            </button>
-                            <button
-                                class="btn"
-                                type="button"
-                                data-popup-btn-delete
-                            >
-                                Löschen
-                            </button>
-                            <button
-                                class="btn"
-                                type="button"
-                                data-popup-btn-cancle
-                            >
-                                Abbrechen
-                            </button>
+                            <button class="btn" data-popup-btn-save>Speichern</button>
+                            <button class="btn" type="button" data-popup-btn-delete>Löschen</button>
+                            <button class="btn" type="button" data-popup-btn-cancle>Abbrechen</button>
                         </div>
                     </form>
                 </div>

@@ -81,6 +81,7 @@ a {
 .site {
     display: grid;
     height: 100vh;
+    overflow-y: auto;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
