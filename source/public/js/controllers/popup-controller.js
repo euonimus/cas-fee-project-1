@@ -41,7 +41,7 @@ export default class popupController {
                 } else {
                     await taskService.updateTask(this.task);
                 }
-                this.mainController.showTasks(loadfromDB = true);
+                this.mainController.showTasks(true);
                 this.showPopup(false);
             }
         });

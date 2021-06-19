@@ -19,13 +19,8 @@ class MainController {
         this.elementBtnNew = document.querySelector("[data-list-btn-new]");
         this.elementBtnEdit = document.querySelector("[data-list-btn-edit]");
 
-        this.htmlTemplateShowTask = Handlebars.compile(`
-        <div><span class='task-title'>{{title}}</span></div>
-        <div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
-        <div>{{importance}}</div>
-        <div class='task_edit'><button id='{{_id}}' class='btn' data-list-btn-edit>Bearbeiten</button></div>
-        <div><label><input id='{{_id}}' type='checkbox' {{finish.checked}} data-list-btn-finish/>{{finish.text}}</label></div>
-        <div class='task_desc'><textarea readonly rows='4'>{{descr}}</textarea></div>`);
+
+        this.htmlTemplateShowTask = Handlebars.compile(document.querySelector("#tasks-template").innerHTML);
     }
 
     initEventHandlers() {

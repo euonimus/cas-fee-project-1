@@ -57,6 +57,15 @@
                 <button class="btn sort" type="button" data-list-btn-importance>Dringlichkeit</button>
             </div>
             <div class="tasks" data-list></div>
+            <!-- template for tasks -->
+            <script id="tasks-template" type="text/x-handlebars-template">
+                <div><span class="task-title">{{title}}</span></div>
+                <div><span class="{{duedate.class}}">{{duedate.text}}</span></div>
+                <div>{{importance}}</div>
+                <div class="task_edit"><button id="{{_id}}" class="btn" data-list-btn-edit>Bearbeiten</button></div>
+                <div><label><input id="{{_id}}" type="checkbox" data-list-btn-finish {{finish.checked}} />{{finish.text}}</label></div>
+                <div class="task_desc"><textarea readonly rows="4">{{descr}}</textarea></div>
+            </script>
 
             <!-- popup -->
             <div class="popup invisible" data-popup>
