@@ -2,14 +2,13 @@
   "name": "cas-fee-projekt-1-starter-template",
   "version": "1.0.0",
   "description": "Testat template",
-  "main": "public/scripts/main.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node ./source/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stylelint": "stylelint \"**/*.css\"",
-    "w3c": "html-validator --file ./public/index.html  --verbose",
-    "eslint": "eslint ./**/*.js",
+    "w3c": "html-validator --file ./source/public/index.html  --verbose",
+    "eslint": "eslint ./source/**/*.js",
     "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
   },
   "author": "Michael Gfeller",
@@ -23,7 +22,11 @@
     "stylelint-config-standard": "^18.3.0"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "moment": "^2.29.1"
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "nedb": "^1.8.0",
+    "nedb-promise": "^2.0.1"
   }
 }

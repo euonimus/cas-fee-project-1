@@ -1,13 +1,13 @@
 /* global moment, Handlebars */
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["htmlDueDate"] }] */
-import TaskService from "../services/task-service.js";
+import { taskService } from "../services/task-service.js";
 import PopupController from "./popup-controller.js";
 
 class MainController {
     constructor() {
-        this.taskService = new TaskService();
-        this.popupController = new PopupController(this, this.taskService);
-        this.lastOrderBy = 'dueDate';
+        this.popupController = new PopupController(this);
+        this.taskArrayfromDB = [];
+        this.lastOrderBy = undefined;
         this.lastFilterFinish = 0;
 
         // ElemendIds
@@ -23,16 +23,16 @@ class MainController {
         <div><span class='task-title'>{{title}}</span></div>
         <div><span class='{{duedate.class}}'>{{duedate.text}}</span></div>
         <div>{{importance}}</div>
-        <div class='task_edit'><button id='{{id}}' class='btn' data-list-btn-edit>Bearbeiten</button></div>
-        <div><label><input id='{{id}}' type='checkbox' {{finish.checked}} data-list-btn-finish/>{{finish.text}}</label></div>
+        <div class='task_edit'><button id='{{_id}}' class='btn' data-list-btn-edit>Bearbeiten</button></div>
+        <div><label><input id='{{_id}}' type='checkbox' {{finish.checked}} data-list-btn-finish/>{{finish.text}}</label></div>
         <div class='task_desc'><textarea readonly rows='4'>{{descr}}</textarea></div>`);
     }
 
     initEventHandlers() {
-        this.elementBtnFinish.addEventListener("click", () => this.filterTaskList(this.elementBtnFinish));
-        this.elementBtnDueDate.addEventListener("click", () => this.sortTaskList(this.elementBtnDueDate));
-        this.elementBtnCreateDate.addEventListener("click", () => this.sortTaskList(this.elementBtnCreateDate));
-        this.elementBtnImportance.addEventListener("click", () => this.sortTaskList(this.elementBtnImportance));
+        this.elementBtnFinish.addEventListener("click", () => this.prep_filter());
+        this.elementBtnDueDate.addEventListener("click", () => this.prep_sort(this.elementBtnDueDate));
+        this.elementBtnCreateDate.addEventListener("click", () => this.prep_sort(this.elementBtnCreateDate));
+        this.elementBtnImportance.addEventListener("click", () => this.prep_sort(this.elementBtnImportance));
 
         // popup clicks
         this.elementBtnNew.addEventListener("click", () => this.popupController.showPopup(true));
@@ -45,47 +45,76 @@ class MainController {
         });
     }
 
-    registerEventHandlersPerTask(newTask, taskId) {
-        // register event listener for task
-        newTask
-            .querySelector("[data-list-btn-edit]")
-            .addEventListener("click", () => this.popupController.showPopup(true, taskId));
+    async loadData() {
+        this.taskArrayfromDB = await taskService.getTasks();
+    }
 
-        newTask.querySelector("[data-list-btn-finish]").addEventListener("click", () => {
-            this.taskService.changeFinish(taskId);
-            this.showTaskList();
+    registerEventHandlersPerTask(newTask, task) {
+        // register event listener for task
+        newTask.querySelector("[data-list-btn-edit]").addEventListener("click", () => this.popupController.showPopup(true, task._id));
+        newTask.querySelector("[data-list-btn-finish]").addEventListener("click", async() => {
+            task.finish = !task.finish;
+            await taskService.updateFinish(task);
+            this.showTasks(true);
         });
     }
 
-    showTaskList() {
-        let taskArray = this.taskService.getTaskList(this.lastFilterFinish, this.lastOrderBy);
+    async showTasks(reloadFromDB = false) {
+        if (reloadFromDB) {
+            await this.loadData();
+        }
+        let showArray = this.taskArrayfromDB;
+
+        switch (this.lastFilterFinish) {
+            case 1:
+                showArray = this.taskArrayfromDB.filter((task) => task.finish === true);
+                break;
+            case 2:
+                showArray = this.taskArrayfromDB.filter((task) => task.finish === false);
+                break;
+        }
+
+        switch (this.lastOrderBy) {
+            case "dueDate":
+                showArray.sort((t1, t2) => {
+                    return t1.dueDate > t2.dueDate ? 1 : t1.dueDate < t2.dueDate ? -1 : 0;
+                });
+                break;
+            case "createDate":
+                showArray.sort((t1, t2) => {
+                    return t1.createDate > t2.createDate ? 1 : t1.createDate < t2.createDate ? -1 : 0;
+                });
+                break;
+            case "importance":
+                showArray.sort((t1, t2) => t2.importance - t1.importance);
+                break;
+        }
 
         this.elementIdTaskList.innerHTML = "";
-        if (taskArray.length === 0) {
+
+        if (showArray.length === 0) {
             const newElementTask = document.createElement("div");
             newElementTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen verfügbar";
             this.elementIdTaskList.appendChild(newElementTask);
         } else {
-            taskArray.forEach((task) => {
+            showArray.forEach((task) => {
                 const newElementTask = document.createElement("div");
                 newElementTask.classList.add("show_task");
                 newElementTask.innerHTML = this.htmlTemplateShowTask({
                     duedate: task.finish ? {} : this.htmlDueDate(task.dueDate),
                     title: task.title,
                     importance: Array(task.importance).fill("⚡").join(""),
-                    id: task.id,
-                    finish: task.finish
-                        ? { checked: "checked", text: "erledigt" }
-                        : { checked: "", text: "noch zu erledigen" },
+                    _id: task._id,
+                    finish: task.finish ? { checked: "checked", text: "erledigt" } : { checked: "", text: "noch zu erledigen" },
                     descr: task.descr,
                 });
-                this.registerEventHandlersPerTask(newElementTask, task.id);
+                this.registerEventHandlersPerTask(newElementTask, task);
                 this.elementIdTaskList.appendChild(newElementTask);
             });
         }
     }
 
-    filterTaskList() {
+    prep_filter() {
         switch (this.lastFilterFinish) {
             case 0: // show only finished
                 this.elementBtnFinish.innerHTML = "nur erledigte";
@@ -103,11 +132,10 @@ class MainController {
                 this.lastFilterFinish = 0;
                 break;
         }
-        this.showTaskList();
+        this.showTasks();
     }
 
-    sortTaskList(orderByElementId) {
-        this.lastClickedSortId = orderByElementId;
+    prep_sort(orderByElementId) {
         this.elementBtnDueDate.classList.remove("current");
         this.elementBtnCreateDate.classList.remove("current");
         this.elementBtnImportance.classList.remove("current");
@@ -123,7 +151,7 @@ class MainController {
                 break;
         }
         orderByElementId.classList.add("current");
-        this.showTaskList();
+        this.showTasks();
     }
 
     htmlDueDate(dueDate) {
@@ -145,10 +173,10 @@ class MainController {
         }
     }
 
-    initialize() {
+    async initialize() {
         this.initEventHandlers();
-        this.taskService.loadData();
-        this.showTaskList();
+        await this.loadData();
+        this.showTasks();
     }
 }
 
