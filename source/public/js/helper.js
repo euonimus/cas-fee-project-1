@@ -3,24 +3,24 @@
 
 /* Cookie */
 function setCookie(name, value) {
-  const expires = moment().add(2, 'days').toDate();
+  const expires = new Date();
+  expires.setTime(expires.getTime() + 2 * 24 * 3600 * 1000); // 2 days in milliseconds
   document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
 }
 
  function getCookieValue(name) {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return (match) ? match[2] : '';
+    return (match) ? match[2] : 'white-theme';
 }
 
 /* theme */
-function setTheme(theme = 'white-theme') {
+function setTheme(theme) {
     if (theme === 'dark-theme') {
         document.body.classList.add('dark-theme');
-        setCookie('theme', 'dark-theme');
     } else {
         document.body.classList.remove('dark-theme');
-        setCookie('theme', 'white-theme');
     }
+    setCookie('theme', theme);
     document.querySelector('[data-list-btn-theme]').value = theme; // necessary for setting the dropdown in case of page switching and load from cookie
 }
 

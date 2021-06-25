@@ -11,8 +11,8 @@
         />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" referrerpolicy="no-referrer"></script>
         <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"
+            integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
@@ -46,7 +46,7 @@
         </header>
         <main class="main">
             <h2>Übersicht über deine Tasks</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, similique.!</p>
+            <p>Verwalte mit dieser App deine Tasks. So hast du jederzeit den Überblick und wirst nie wieder etwas vergessen!</p>
             <button class="btn sort" data-list-btn-new>Neuer Task erstellen</button>
             <div class="sort-flex">
                 <label>Erledigung filtern:</label>
@@ -57,6 +57,7 @@
                 <button class="btn sort" type="button" data-list-btn-importance>Dringlichkeit</button>
             </div>
             <div class="tasks" data-list></div>
+
             <!-- template for tasks -->
             <script id="tasks-template" type="text/x-handlebars-template">
                 <div><span class="task-title">{{title}}</span></div>

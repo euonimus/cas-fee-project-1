@@ -1,30 +1,29 @@
-/* global giveDate */
 import { httpService } from "./http-service.js";
 
 class TaskService {
     async getTasks() {
-        return await httpService.ajax("GET", "/tasks", undefined);
+        return httpService.ajax("GET", "/tasks", undefined);
     }
 
     async getTask(id) {
-        return await httpService.ajax("GET", `/tasks/${id}`);
+        return httpService.ajax("GET", `/tasks/${id}`);
     }
 
     async createTask(task) {
-        return await httpService.ajax("POST", `/tasks`, { task });
+        return httpService.ajax("POST", `/tasks`, { task });
     }
 
     async deleteTask(id) {
-        return await httpService.ajax("DELETE", `/tasks/${id}`);
+        return httpService.ajax("DELETE", `/tasks/${id}`);
     }
 
     async updateTask(task) {
-        return await httpService.ajax("PATCH", `/tasks/${task._id}`, { task });
+        return httpService.ajax("PATCH", `/tasks/${task._id}`, { task });
     }
 
     async updateFinish(task) {
-        return await httpService.ajax("PATCH", `/tasks/${task._id}/${task.finish}`);
+        return httpService.ajax("PATCH", `/tasks/${task._id}/${task.finish}`);
     }
 }
-
+// eslint-disable-next-line import/prefer-default-export
 export const taskService = new TaskService();

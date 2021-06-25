@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* global moment, Handlebars */
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["htmlDueDate"] }] */
 import { taskService } from "../services/task-service.js";
@@ -10,7 +11,6 @@ class MainController {
         this.lastOrderBy = undefined;
         this.lastFilterFinish = 0;
 
-        // ElemendIds
         this.elementIdTaskList = document.querySelector("[data-list]");
         this.elementBtnFinish = document.querySelector("[data-list-btn-finish]");
         this.elementBtnDueDate = document.querySelector("[data-list-btn-dueDate]");
@@ -19,15 +19,14 @@ class MainController {
         this.elementBtnNew = document.querySelector("[data-list-btn-new]");
         this.elementBtnEdit = document.querySelector("[data-list-btn-edit]");
 
-
         this.htmlTemplateShowTask = Handlebars.compile(document.querySelector("#tasks-template").innerHTML);
     }
 
     initEventHandlers() {
-        this.elementBtnFinish.addEventListener("click", () => this.prep_filter());
-        this.elementBtnDueDate.addEventListener("click", () => this.prep_sort(this.elementBtnDueDate));
-        this.elementBtnCreateDate.addEventListener("click", () => this.prep_sort(this.elementBtnCreateDate));
-        this.elementBtnImportance.addEventListener("click", () => this.prep_sort(this.elementBtnImportance));
+        this.elementBtnFinish.addEventListener("click", () => this.prepFilter());
+        this.elementBtnDueDate.addEventListener("click", () => this.prepSort(this.elementBtnDueDate));
+        this.elementBtnCreateDate.addEventListener("click", () => this.prepSort(this.elementBtnCreateDate));
+        this.elementBtnImportance.addEventListener("click", () => this.prepSort(this.elementBtnImportance));
 
         // popup clicks
         this.elementBtnNew.addEventListener("click", () => this.popupController.showPopup(true));
@@ -47,9 +46,10 @@ class MainController {
     registerEventHandlersPerTask(newTask, task) {
         // register event listener for task
         newTask.querySelector("[data-list-btn-edit]").addEventListener("click", () => this.popupController.showPopup(true, task._id));
-        newTask.querySelector("[data-list-btn-finish]").addEventListener("click", async() => {
-            task.finish = !task.finish;
-            await taskService.updateFinish(task);
+        newTask.querySelector("[data-list-btn-finish]").addEventListener("click", async () => {
+            const updatedTask = task;
+            updatedTask.finish = !updatedTask.finish;
+            await taskService.updateFinish(updatedTask);
             this.showTasks(true);
         });
     }
@@ -58,30 +58,32 @@ class MainController {
         if (reloadFromDB) {
             await this.loadData();
         }
-        let showArray = this.taskArrayfromDB;
+        let showArray;
 
         switch (this.lastFilterFinish) {
             case 1:
-                showArray = this.taskArrayfromDB.filter((task) => task.finish === true);
+                showArray = this.taskArrayfromDB.filter((task) => task.finish === false);
                 break;
             case 2:
-                showArray = this.taskArrayfromDB.filter((task) => task.finish === false);
+                showArray = this.taskArrayfromDB.filter((task) => task.finish === true);
+                break;
+            case 0: default:
+                showArray = this.taskArrayfromDB;
                 break;
         }
 
         switch (this.lastOrderBy) {
             case "dueDate":
-                showArray.sort((t1, t2) => {
-                    return t1.dueDate > t2.dueDate ? 1 : t1.dueDate < t2.dueDate ? -1 : 0;
-                });
+                showArray.sort((t1, t2) => (t1.dueDate > t2.dueDate ? 1 : t1.dueDate < t2.dueDate ? -1 : 0));
                 break;
             case "createDate":
-                showArray.sort((t1, t2) => {
-                    return t1.createDate > t2.createDate ? 1 : t1.createDate < t2.createDate ? -1 : 0;
-                });
+                showArray.sort((t1, t2) => (t1.createDate > t2.createDate ? 1 : t1.createDate < t2.createDate ? -1 : 0));
                 break;
             case "importance":
                 showArray.sort((t1, t2) => t2.importance - t1.importance);
+                break;
+            default:
+                // unsorted > default sorting from Array
                 break;
         }
 
@@ -89,7 +91,7 @@ class MainController {
 
         if (showArray.length === 0) {
             const newElementTask = document.createElement("div");
-            newElementTask.innerHTML = "<p>Es sind keine Tasks zum Anzeigen verfügbar";
+            newElementTask.innerHTML = "Es sind keine Tasks zum Anzeigen verfügbar";
             this.elementIdTaskList.appendChild(newElementTask);
         } else {
             showArray.forEach((task) => {
@@ -109,19 +111,19 @@ class MainController {
         }
     }
 
-    prep_filter() {
+    prepFilter() {
         switch (this.lastFilterFinish) {
-            case 0: // show only finished
-                this.elementBtnFinish.innerHTML = "nur erledigte";
+            case 0: // show only not finished
+                this.elementBtnFinish.innerHTML = "nur offene";
                 this.elementBtnFinish.classList.add("current");
                 this.lastFilterFinish = 1;
                 break;
-            case 1: // show only not finished
-                this.elementBtnFinish.innerHTML = "nur offene";
+            case 1: // show only finished
+                this.elementBtnFinish.innerHTML = "nur erledigte";
                 this.elementBtnFinish.classList.add("current");
                 this.lastFilterFinish = 2;
                 break;
-            case 2: // no filter
+            case 2: default: // no filter
                 this.elementBtnFinish.innerHTML = "alle";
                 this.elementBtnFinish.classList.remove("current");
                 this.lastFilterFinish = 0;
@@ -130,10 +132,11 @@ class MainController {
         this.showTasks();
     }
 
-    prep_sort(orderByElementId) {
+    prepSort(orderByElementId) {
         this.elementBtnDueDate.classList.remove("current");
         this.elementBtnCreateDate.classList.remove("current");
         this.elementBtnImportance.classList.remove("current");
+        // eslint-disable-next-line default-case
         switch (orderByElementId) {
             case this.elementBtnDueDate:
                 this.lastOrderBy = "dueDate";
@@ -155,6 +158,7 @@ class MainController {
 
         if (dueDiff < -1) {
             return { class: "dueDate-tolate", text: "überfällig seit " + Math.abs(Math.round(dueDiff)) + " Tagen" };
+        // eslint-disable-next-line no-else-return
         } else if (dueDiff < 0) {
             return { class: "dueDate-tolate", text: "überfällig seit gestern" };
         } else if (dueDiff < 1) {

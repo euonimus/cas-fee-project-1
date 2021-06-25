@@ -22,7 +22,7 @@ export class TaskController {
     }
 
     async updateFinish(req, res) {
-        res.json(await taskStore.updateFinish(req.params.id, (req.params.finish === "false") ? false : true)); //cause of req.params.finish is a String
+        res.json(await taskStore.updateFinish(req.params.id, (req.params.finish === "true"))); // cause of req.params.finish is a String
     }
 }
 

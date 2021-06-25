@@ -1,14 +1,10 @@
-{"title":"213123","descr":"213213","createDate":"2021-06-19T12:04:56.064Z","dueDate":"2021-06-20T00:00:00.000Z","importance":3,"finish":false,"_id":"DBg69q2TtYA7MP9F"}
-{"title":"aaaa","descr":"aaaaa","createDate":"2021-06-19T12:08:21.768Z","dueDate":"2021-06-17T00:00:00.000Z","importance":2,"finish":false,"_id":"IDGYGzbYYLvYBMY2"}
-{"title":"wqeqweqwe","descr":"qweqwewqe","createDate":"2021-06-19T12:08:03.184Z","dueDate":"2021-06-21T00:00:00.000Z","importance":3,"finish":false,"_id":"NO0pxEpV81PQ7lND"}
+{"title":"3331231231","descr":"333","createDate":"2021-06-21T09:58:25.404Z","dueDate":"2021-10-01T00:00:00.000Z","importance":3,"finish":false,"_id":"2PODwYqhd2gbVh1T"}
+{"title":"abcdef","descr":"abcdef","createDate":"2021-06-21T21:14:37.507Z","dueDate":"2021-07-01T00:00:00.000Z","importance":2,"finish":true,"_id":"Fvo3a8dSHaiULGJg"}
+{"title":"qqq","descr":"qqq123","createDate":"2021-06-24T16:44:04.575Z","dueDate":"2021-06-30T00:00:00.000Z","importance":1,"finish":false,"_id":"Jcu2kCaczOtgv79R"}
+{"title":"wqeqweqwe111","descr":"qweqwewqe111","createDate":"2021-06-19T12:08:03.184Z","dueDate":"2021-09-01T00:00:00.000Z","importance":3,"finish":false,"_id":"NO0pxEpV81PQ7lND"}
+{"title":"asdasd","descr":"sadasd","createDate":"2021-06-21T20:46:56.845Z","dueDate":"2021-09-01T00:00:00.000Z","importance":3,"finish":false,"_id":"PWXZ0Z3gD1twmJBN"}
 {"title":"Mama anrufen","descr":"Beschreibung zum Task \"Mama anrufen\"","createDate":"2021-06-19T11:46:41.005Z","dueDate":"2021-06-30T00:00:00.000Z","importance":5,"finish":false,"_id":"PzkWpizZuSfmx0UP"}
-{"title":"qweqwe","descr":"312312312312","createDate":"2021-06-19T12:08:10.849Z","dueDate":"2021-06-22T00:00:00.000Z","importance":1,"finish":false,"_id":"WjQZPCZ1CRad6Mp0"}
-{"title":"abcd","descr":"aaaaa","createDate":"2021-06-19T12:08:21.768Z","dueDate":"2021-06-17T00:00:00.000Z","importance":2,"finish":false,"_id":"IDGYGzbYYLvYBMY2"}
-{"title":"abcd","descr":"aaaaa","createDate":"2021-06-19T12:08:21.768Z","dueDate":"2021-06-17T00:00:00.000Z","importance":2,"finish":true,"_id":"IDGYGzbYYLvYBMY2"}
-{"title":"wqeqweqwe","descr":"qweqwewqe","createDate":"2021-06-19T12:08:03.184Z","dueDate":"2021-06-21T00:00:00.000Z","importance":3,"finish":true,"_id":"NO0pxEpV81PQ7lND"}
-{"title":"213123","descr":"213213","createDate":"2021-06-19T12:04:56.064Z","dueDate":"2021-06-20T00:00:00.000Z","importance":3,"finish":true,"_id":"DBg69q2TtYA7MP9F"}
-{"title":"Mama anrufen","descr":"Beschreibung zum Task \"Mama anrufen\"","createDate":"2021-06-19T11:46:41.005Z","dueDate":"2021-06-30T00:00:00.000Z","importance":5,"finish":true,"_id":"PzkWpizZuSfmx0UP"}
-{"title":"213123","descr":"213213","createDate":"2021-06-19T12:04:56.064Z","dueDate":"2021-06-20T00:00:00.000Z","importance":3,"finish":false,"_id":"DBg69q2TtYA7MP9F"}
-{"title":"abcd","descr":"aaaaa","createDate":"2021-06-19T12:08:21.768Z","dueDate":"2021-06-17T00:00:00.000Z","importance":2,"finish":false,"_id":"IDGYGzbYYLvYBMY2"}
-{"$$deleted":true,"_id":"WjQZPCZ1CRad6Mp0"}
-{"title":"sdfafdsf","descr":"afdsasdfafds","createDate":"2021-06-19T12:23:31.494Z","dueDate":"2021-06-30T00:00:00.000Z","importance":3,"finish":false,"_id":"3X3pnr8uRW3WKykB"}
+{"title":"qwewqewqe","descr":"qwewqeqwe","createDate":"2021-06-24T16:49:26.564Z","dueDate":"2021-06-27T00:00:00.000Z","importance":5,"finish":true,"_id":"aLofNnroNoJZBiZ5"}
+{"title":"asdsadsadsa","descr":"dasdasdsad","createDate":"2021-06-21T21:08:50.294Z","dueDate":"2021-08-01T00:00:00.000Z","importance":1,"finish":false,"_id":"gFIN3SjRlvTVxLYY"}
+{"title":"eee","descr":"eeee","createDate":"2021-06-21T21:31:02.268Z","dueDate":"2021-06-24T00:00:00.000Z","importance":3,"finish":false,"_id":"lXPL83uki2aliGPP"}
+{"title":"77777","descr":"7878787","createDate":"2021-06-21T21:40:51.428Z","dueDate":"2021-06-25T00:00:00.000Z","importance":1,"finish":false,"_id":"p8wJIU2YMe5xoFld"}

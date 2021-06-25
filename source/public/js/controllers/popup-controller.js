@@ -30,9 +30,7 @@ export default class popupController {
 
     initEventHandlers() {
         this.elementPopupBtnCancle.addEventListener("click", () => this.showPopup(false));
-        this.elementPopupImportance.addEventListener("click", (event) =>
-            this.updateAndDisplayImportance(Number(event.target.dataset.popupImportanceValue))
-        );
+        this.elementPopupImportance.addEventListener("click", (event) => this.updateAndDisplayImportance(Number(event.target.dataset.popupImportanceValue)));
         this.elementPopupBtnSave.addEventListener("click", async () => {
             if (this.elementForm.checkValidity()) {
                 this.mapData();
@@ -59,7 +57,7 @@ export default class popupController {
 
     async showPopup(display, id = 0) {
         if (display) {
-            if (id != 0) {
+            if (id !== 0) {
                 this.elementH2.innerHTML = "Bearbeite diesen Task";
                 this.elementPopupBtnDelete.classList.remove("invisible");
                 this.task = await taskService.getTask(id);
@@ -90,8 +88,7 @@ export default class popupController {
 
     updateAndDisplayImportance(importance) {
         this.tmp_importance = importance;
-        this.elementPopupImportanceValues.forEach((element, index) =>
-            index < importance ? element.classList.add("chosen") : element.classList.remove("chosen")
-        );
+        // eslint-disable-next-line no-confusing-arrow
+        this.elementPopupImportanceValues.forEach((element, index) => ((index < importance) ? element.classList.add("chosen") : element.classList.remove("chosen")));
     }
 }

@@ -1,5 +1,4 @@
 import Datastore from "nedb-promise";
-import Task from "../public/js/task.js";
 
 export class TaskStore {
     constructor(db) {
@@ -7,30 +6,31 @@ export class TaskStore {
     }
 
     async all() {
-        return await this.db.find({});
+        return this.db.find({});
     }
 
     async get(id) {
-        return await this.db.findOne({ _id: id });
+        return this.db.findOne({ _id: id });
     }
 
     async add(task) {
-        return await this.db.insert(task);
+        return this.db.insert(task);
     }
 
     async delete(id) {
-        return await this.db.remove({ _id: id });
+        return this.db.remove({ _id: id });
     }
 
     async update(task) {
-        return await this.db.update(
+        return this.db.update(
             { _id: task._id },
-            { $set: { title: task.title, descr: task.descr, dueDate: task.dueDate, importance: task.importance, finish: task.finish } }
+            { $set: { title: task.title, descr: task.descr, dueDate: task.dueDate, importance: task.importance, finish: task.finish } },
         );
     }
 
     async updateFinish(id, finish) {
-        return await this.db.update({ _id: id }, { $set: { finish: finish } });
+        // eslint-disable-next-line object-shorthand
+        return this.db.update({ _id: id }, { $set: { finish: finish } });
     }
 }
 

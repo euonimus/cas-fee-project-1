@@ -1,5 +1,5 @@
 {
-  "name": "cas-fee-projekt-1-starter-template",
+  "name": "cas-fee-projekt-1-reto-bischofberger",
   "version": "1.0.0",
   "description": "Testat template",
   "type": "module",
@@ -7,7 +7,7 @@
     "start": "node ./source/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stylelint": "stylelint \"**/*.css\"",
-    "w3c": "html-validator --file ./source/public/index.html  --verbose",
+    "w3c": "html-validator --file ./source/public/html/index.html  --verbose",
     "eslint": "eslint ./source/**/*.js",
     "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
   },
